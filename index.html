@@ -1,33 +1,59 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria Paulo Canuto - Redirecionando...</title>
-    <style>
-        body {
-            background: #1a1a1a;
-            color: white;
-            font-family: Georgia, serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .message {
-            font-size: 1.5rem;
-        }
-    </style>
-    <script>
-        window.location.href = "/galeria-digital-artes/catalog_mobile/index.html";
-    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{titulo} - Paulo Canuto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/style.css">
 </head>
 <body>
-    <div class="message">
-        <h1>Paulo Canuto</h1>
-        <p>Redirecionando para o catálogo...</p>
+    <div class="container">
+        <!-- 📸 IMAGEM PRINCIPAL -->
+        <div class="artwork-image-container">
+            <img src="../../assets/img/{imagem}" alt="{titulo}" class="artwork-image" />
+        </div>
+        
+        <!-- 📝 INFORMAÇÕES DA OBRA -->
+        <h1>PAULO CANUTO</h1>
+        <h2 class="artwork-title">{titulo}</h2>
+        <div class="divider"></div>
+        
+        <div class="details-section">
+            <p><strong>{tecnica}</strong></p>
+            <p><strong>{dimensoes}</strong></p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- 💰 OPÇÕES DE PAGAMENTO -->
+        <div class="payment-section">
+            <p class="payment-info">{parcelamento}</p>           
+            
+            <div class="payment-buttons">
+                <a href="{link_credito}" target="_blank" class="payment-button credit-button">
+                    <span class="payment-label">CARTÃO DE CRÉDITO</span>
+                    <span class="payment-value">R$ {valor_credito}</span>
+                </a>
+                
+                <a href="{link_pix}" target="_blank" class="payment-button pix-button">
+                    <span class="payment-label">PIX</span>
+                    <span class="payment-value">R$ {valor_pix}</span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- 🔗 CALL-TO-ACTION -->
+        <div class="cta-section">
+            <a href="https://wa.me/5571999837602?text=Tenho interesse na obra: {titulo_encoded}" target="_blank" class="whatsapp-button">
+                Fale com o artista
+            </a>
+            <a href="https://datacanuto.github.io/galeria-digital-artes/catalog_mobile/index.html" class="catalog-button">
+                CATÁLOGO COMPLETO
+            </a>
+        </div>
     </div>
 </body>
-</html>
+</html>            

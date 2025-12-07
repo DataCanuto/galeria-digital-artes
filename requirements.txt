@@ -15,5 +15,8 @@ Pillow>=9.0.0
 # Webhook (servidor Flask)
 Flask>=2.3.0
 
+# Variáveis de ambiente
+python-dotenv>=1.0.0
+
 # Utilidades
 urllib3>=1.26.0
