@@ -1,59 +1,49 @@
 ﻿<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{titulo} - Paulo Canuto</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@400;700&family=Oswald:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria Digital - Paulo Canuto</title>
+    <meta http-equiv="refresh" content="0; url=./catalog_mobile/index.html">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f5f5;
+        }
+        .redirect-message {
+            text-align: center;
+            padding: 40px;
+        }
+        .redirect-message h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        .redirect-message a {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+        .redirect-message a:hover {
+            background: #333;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- 📸 IMAGEM PRINCIPAL -->
-        <div class="artwork-image-container">
-            <img src="../../assets/img/{imagem}" alt="{titulo}" class="artwork-image" />
-        </div>
-        
-        <!-- 📝 INFORMAÇÕES DA OBRA -->
-        <h1>PAULO CANUTO</h1>
-        <h2 class="artwork-title">{titulo}</h2>
-        <div class="divider"></div>
-        
-        <div class="details-section">
-            <p><strong>{tecnica}</strong></p>
-            <p><strong>{dimensoes}</strong></p>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <!-- 💰 OPÇÕES DE PAGAMENTO -->
-        <div class="payment-section">
-            <p class="payment-info">{parcelamento}</p>           
-            
-            <div class="payment-buttons">
-                <a href="{link_credito}" target="_blank" class="payment-button credit-button">
-                    <span class="payment-label">CARTÃO DE CRÉDITO</span>
-                    <span class="payment-value">R$ {valor_credito}</span>
-                </a>
-                
-                <a href="{link_pix}" target="_blank" class="payment-button pix-button">
-                    <span class="payment-label">PIX</span>
-                    <span class="payment-value">R$ {valor_pix}</span>
-                </a>
-            </div>
-        </div>
-        
-        <div class="divider"></div>
-        
-        <!-- 🔗 CALL-TO-ACTION -->
-        <div class="cta-section">
-            <a href="https://wa.me/5571999837602?text=Tenho interesse na obra: {titulo_encoded}" target="_blank" class="whatsapp-button">
-                Fale com o artista
-            </a>
-            <a href="https://datacanuto.github.io/galeria-digital-artes/catalog_mobile/index.html" class="catalog-button">
-                CATÁLOGO COMPLETO
-            </a>
-        </div>
+    <div class="redirect-message">
+        <h1>Galeria Digital - Paulo Canuto</h1>
+        <p>Redirecionando para o catálogo...</p>
+        <a href="./catalog_mobile/index.html">Clique aqui se não for redirecionado automaticamente</a>
     </div>
 </body>
 </html>            
