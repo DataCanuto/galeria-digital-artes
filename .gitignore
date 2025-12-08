@@ -51,7 +51,8 @@ Thumbs.db
 # Arquivos de desenvolvimento (não publicar no GitHub Pages)
 *.csv
 *.py
-*.md
+RESUMO.md
+GUIA_MERCADO_PAGO.md
 requirements.txt
 gerador_etiquetas.ipynb
 qr_codes_export/
