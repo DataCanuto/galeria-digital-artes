@@ -115,7 +115,7 @@ h2.artwork-title {
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     min-height: 75px;
-    background: linear-gradient(135deg, #000000 0%, #009EE3 100%);
+    background: linear-gradient(135deg, #e7ea17 0%, #009EE3 100%);
     color: #FFFFFF;
     border: none;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -140,14 +140,14 @@ h2.artwork-title {
     transition: all 0.3s ease;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     min-height: 75px;
-    background: linear-gradient(135deg, #32BCAD 0%, #00A859 100%);
+    background: linear-gradient(135deg, #32BCAD 0%, #beb509 100%);
     color: #FFFFFF;
     border: none;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .payment-button-pix:hover {
-    background: linear-gradient(135deg, #2aa599 0%, #008f4d 100%);
+    background: linear-gradient(135deg, #2aa599 0%, #b1c619 100%);
     transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 168, 89, 0.5);
 }
@@ -206,26 +206,6 @@ h2.artwork-title {
     margin-top: 30px;
 }
 
-/* Botão WhatsApp */
-.whatsapp-button {
-    display: block;
-    padding: 15px 30px;
-    background-color: #25D366;
-    color: #FFFFFF;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1.1em;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.whatsapp-button:hover {
-    background-color: #1ebe57;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-}
 
 /* Botão Catálogo */
 .catalog-button {
@@ -285,7 +265,6 @@ h2.artwork-title {
         font-size: 1em;
     }
 
-    .whatsapp-button,
     .catalog-button {
         font-size: 1em;
         padding: 12px 25px;

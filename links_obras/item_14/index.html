@@ -9,35 +9,30 @@
 </head>
 <body>
     <div class="container">
-        <!-- 📸 IMAGEM PRINCIPAL -->
         <div class="artwork-image-container">
             <img src="../../assets/img/REF 14-CENAS URBANAS.jpg" alt="CENAS URBANAS" class="artwork-image" />
         </div>
-
-        <!-- 📝 INFORMAÇÕES DA OBRA -->
+        
         <h1>PAULO CANUTO</h1>
         <h2 class="artwork-title">CENAS URBANAS</h2>
         <div class="divider"></div>
-
+        
         <div class="details-section">
-            <p><strong>ACRÍLICA SOBRE TELA, 2006</strong></p>
-            <p><strong>76 X 106</strong></p>
+            <p><strong>ACRÍLICA SOBRE TELA, 76 X 106, 2006</strong></p>            
         </div>
-
+        
         <div class="divider"></div>
-
-        <!-- 💰 PAGAMENTO MERCADO PAGO -->
+        
+        <!-- CONDICIONAL: Se tem valor, mostra pagamento. Se não, mostra acervo -->
+        
         <div class="payment-section">
-            <p class="payment-info">5% À Vista/ 6 Vezes</p>
-
             <div class="payment-buttons">
                 <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-dae4382e-5cf9-475f-8cac-f940a059f168" target="_blank" class="payment-button-credit">
                     <span class="payment-label">CARTÃO DE CRÉDITO</span>
                     <span class="payment-value">R$ 4.800,00</span>
                     <span class="payment-installments">Parcelado em até 6x</span>
                 </a>
-
-                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-a4e00e7b-1d23-4170-865f-6c2b546d68b2" target="_blank" class="payment-button-pix">
+                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-c45cdbec-adb9-4e57-b890-50ae109b7935" target="_blank" class="payment-button-pix">
                     <span class="payment-label">PIX</span>
                     <span class="payment-value">R$ 4.560,00</span>
                     <span class="payment-discount">5% de desconto à vista</span>
@@ -45,14 +40,16 @@
             </div>
         </div>
         
-
-        <!-- 🔗 CALL-TO-ACTION -->
-        <div class="cta-section">
-            <a href="https://wa.me/5571999837602?text=Tenho interesse na obra: CENAS%20URBANAS" target="_blank" class="whatsapp-button">
-                Fale com o artista
+        {{#IF_ACERVO}}
+        <div class="acervo-section">
+            <p class="acervo-label">ACERVO PESSOAL</p>
+        </div>
+        
+        
+        <div class="cta-section">            
             </a>
             <a href="https://datacanuto.github.io/galeria-digital-artes/catalog_mobile/index.html" class="catalog-button">
-                CATÁLOGO COMPLETO
+                CATÁLOGO
             </a>
         </div>
     </div>

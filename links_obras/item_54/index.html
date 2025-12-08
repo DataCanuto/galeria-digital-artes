@@ -9,35 +9,30 @@
 </head>
 <body>
     <div class="container">
-        <!-- 📸 IMAGEM PRINCIPAL -->
         <div class="artwork-image-container">
             <img src="../../assets/img/REF 54 - PENAS TROPICAIS.jpg" alt="PENAS TROPICAIS" class="artwork-image" />
         </div>
-
-        <!-- 📝 INFORMAÇÕES DA OBRA -->
+        
         <h1>PAULO CANUTO</h1>
         <h2 class="artwork-title">PENAS TROPICAIS</h2>
         <div class="divider"></div>
-
+        
         <div class="details-section">
-            <p><strong>ACRÍLICA SOBRE TECIDO, 2025</strong></p>
-            <p><strong>P/M/G</strong></p>
+            <p><strong>ACRÍLICA SOBRE TECIDO, P/M/G, 2025</strong></p>            
         </div>
-
+        
         <div class="divider"></div>
-
-        <!-- 💰 PAGAMENTO MERCADO PAGO -->
+        
+        <!-- CONDICIONAL: Se tem valor, mostra pagamento. Se não, mostra acervo -->
+        
         <div class="payment-section">
-            <p class="payment-info">2 =2 50,00 / 3 = 400,00</p>
-
             <div class="payment-buttons">
                 <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-48dce339-e296-4be3-ac4a-63b3cf44d54e" target="_blank" class="payment-button-credit">
                     <span class="payment-label">CARTÃO DE CRÉDITO</span>
                     <span class="payment-value">R$ 150,00</span>
                     <span class="payment-installments">Parcelado em até 3x</span>
                 </a>
-
-                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-39471826-cd69-49c8-9e57-56cc74878892" target="_blank" class="payment-button-pix">
+                <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=3041576384-f09c8e7b-ef7f-4a19-a0ba-ca8534eeaf4d" target="_blank" class="payment-button-pix">
                     <span class="payment-label">PIX</span>
                     <span class="payment-value">R$ 142,50</span>
                     <span class="payment-discount">5% de desconto à vista</span>
@@ -45,14 +40,16 @@
             </div>
         </div>
         
-
-        <!-- 🔗 CALL-TO-ACTION -->
-        <div class="cta-section">
-            <a href="https://wa.me/5571999837602?text=Tenho interesse na obra: PENAS%20TROPICAIS" target="_blank" class="whatsapp-button">
-                Fale com o artista
+        {{#IF_ACERVO}}
+        <div class="acervo-section">
+            <p class="acervo-label">ACERVO PESSOAL</p>
+        </div>
+        
+        
+        <div class="cta-section">            
             </a>
             <a href="https://datacanuto.github.io/galeria-digital-artes/catalog_mobile/index.html" class="catalog-button">
-                CATÁLOGO COMPLETO
+                CATÁLOGO
             </a>
         </div>
     </div>
