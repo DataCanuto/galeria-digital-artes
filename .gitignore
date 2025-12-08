@@ -48,6 +48,14 @@ Thumbs.db
 # Logs
 *.log
 
+# Arquivos de desenvolvimento (não publicar no GitHub Pages)
+*.csv
+*.py
+*.md
+requirements.txt
+gerador_etiquetas.ipynb
+qr_codes_export/
+
 # Dados locais (não versionados)
 qr_codes_export/*.png
 *.backup
