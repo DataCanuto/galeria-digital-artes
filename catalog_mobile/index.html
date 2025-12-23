@@ -98,6 +98,10 @@
             letter-spacing: 0.05rem;
         }
 
+        .category-btn-name .highlight-c {
+            color: #e53935;
+        }
+
         .category-btn-count {
             font-size: 0.75rem;
             color: #aaaaaa;
@@ -296,6 +300,207 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* ============================================ */
+        /* ESTILOS DO FOLDER DIVERCIDADE */
+        /* ============================================ */
+        .folder-section {
+            max-width: 100%;
+            margin: 0 auto 4rem;
+            padding: 0;
+            scroll-margin-top: 150px;
+        }
+
+        .folder-header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0.9) 0%, transparent 100%);
+        }
+
+        .folder-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .folder-title .highlight-c {
+            color: #e53935;
+        }
+
+        .folder-subtitle {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            font-style: italic;
+            letter-spacing: 0.1rem;
+        }
+
+        .folder-viewer {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #0a0a0a;
+        }
+
+        .folder-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .folder-page {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 0 2.5rem 0;
+            background: #fff;
+            border-radius: 15px;
+            border: 2px solid #111;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin: 2.5rem 0 2.5rem 0;
+        }
+
+        .folder-page img {
+            max-width: 100%;
+            max-height: 85vh;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #111;
+        }
+
+        .page-indicator {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Indicador de página no scroll */
+        .page-indicator {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Responsivo folder */
+        @media (max-width: 768px) {
+            .folder-title {
+                font-size: 2rem;
+            }
+
+            .folder-page {
+                padding: 0.5rem;
+            }
+
+            .page-indicator {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        /* ============================================ */
+        /* ESTILOS DO TEXTO CURATORIAL */
+        /* ============================================ */
+        .curatorial-text {
+            background: #ffffff;
+            padding: 2.5rem 1.5rem;
+            margin: 2.5rem 0 2.5rem 0;
+            border-radius: 15px;
+            border: 2px solid #111;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .curatorial-text-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .curatorial-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            text-align: center;
+            letter-spacing: 0.02rem;
+        }
+
+        .curatorial-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #2d2d2d;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        .curatorial-body p {
+            margin-bottom: 1.2rem;
+            text-indent: 1.5rem;
+        }
+
+        .curatorial-body p:first-of-type {
+            text-indent: 0;
+        }
+
+        .curatorial-signature {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            text-align: right;
+            font-style: italic;
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
+        .curatorial-image {
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .curatorial-text {
+                padding: 2rem 1rem;
+            }
+
+            .curatorial-title {
+                font-size: 1.3rem;
+            }
+
+            .curatorial-body {
+                font-size: 0.95rem;
+                line-height: 1.75;
+            }
+
+            .curatorial-body p {
+                text-indent: 1rem;
+            }
+        }
+        /* FIM ESTILOS TEXTO CURATORIAL */
+        /* FIM ESTILOS FOLDER */
     </style>
 </head>
 <body>
@@ -305,7 +510,11 @@
 
         <!-- Menu horizontal de categorias -->
         <nav class="categories-menu">
-                        <a href="#telas" class="category-btn">
+            <a href="#folder-divercidade" class="category-btn">
+                <span class="category-btn-name">DIVER<span class="highlight-c">C</span>IDADE</span>
+                <span class="category-btn-count">Introdução</span>
+            </a>
+            <a href="#telas" class="category-btn">
                 <span class="category-btn-name">TELAS</span>
                 <span class="category-btn-count">15 obras</span>
             </a>
@@ -330,7 +539,108 @@
 
     <!-- Conteúdo com todas as obras -->
     <main class="content">
-                <section id="telas" class="category-section">
+        <!-- ============================================ -->
+        <!-- SEÇÃO DO FOLDER DIVERCIDADE -->
+        <!-- ============================================ -->
+        <section id="folder-divercidade" class="folder-section">
+            <div class="folder-header">
+                <h2 class="folder-title">Diver<span class="highlight-c">C</span>idade</h2>
+                <p class="folder-subtitle">Exposição de Arte Urbana</p>
+            </div>
+            
+            <div class="folder-viewer">
+                <div class="folder-container">
+                    <div class="folder-page" data-page="1">
+                        <img src="folder_images/pagina_01.png" alt="DiverCidade - Página 1" loading="lazy">
+                    </div>
+                    
+                    <!-- Texto do Artista - Paulo Canuto -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Minhas palavras sobre a mostra</h3>
+                            <div class="curatorial-body">
+                                <p>Arquiteto urbanista e artista plástico, desenho e pinto há mais de 50 anos com um olhar investigativo sobre o ambiente urbano, com o movimento contínuo de seus ocupantes, o design dos meios de transporte, sua arquitetura e seus elementos históricos.</p>
+                                
+                                <p>Autodidata, sempre gostei de experimentar as diversas técnicas de pintura e aplicá-las em suportes diferenciados. Desde os anos 80 utilizo a aerografia como uma das técnicas favoritas, embora admita que o prazer e a emoção do desenho e da pintura tradicionais são insubstituíveis/incomparáveis.</p>
+                                
+                                <p>A partir da aerografia dei início às pinturas em papel e tecido através da produção de posters, o que me motivou às primeiras exposições.</p>
+                                
+                                <p>É deste período que surgiu a vontade de explorar a pintura em tecido, utilizando como suporte a camiseta básica de algodão, motivada pela possibilidade da livre circulação e assim divulgar minha produção artística.</p>
+                                
+                                <p>Desde essa época tenho identificado uma tendência ao estilo pop, nos meus trabalhos, com a utilização de temas urbanos, esportivos, corporais, design de carros, ícones da música e movimentos de dança.</p>
+                                
+                                <p>Atualmente tenho buscado diversificar as técnicas de pintura com a introdução de serigrafia e uso de projetor, bem como de outros suportes como MDF, papel pluma, compensado, fórmica e placa cimentícia.</p>
+                                
+                                <p>Em busca de novos experimentos surgiu a ideia de reciclar um precioso refugo da construção civil - o fio de cobre desencapado, utilizando-o para fazer dobraduras que resultam em objetos e elementos expressivos.</p>
+                                
+                                <p>A atual mostra denominada DiverCidade traz um resumo das experiências vivenciadas ao longo desses anos, no qual os temas e imagens estão entrelaçados por um fio cujo foco é a diversidade urbana.</p>
+                            </div>
+                            <div class="curatorial-signature">Paulo Canuto, outubro 2025</div>
+                            
+                        </div>
+                    </div>
+                    <!-- FIM Texto do Artista -->
+                    
+                                        
+                    <!-- Texto Curatorial - Chico Mazzoni -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Um artista, a cidade, seus ocupantes e seus meios</h3>
+                            <div class="curatorial-body">
+                                <p>Paulo Canuto olha para a cidade desde que eu o conheço. E isso vem das nossas adolescências, colegas num curso de inglês. Entretanto não se trata de um olhar para uma cidade que se captura numa fotografia. Ele olha para uma cidade que se move, uma cidade viva, dinâmica, com seus componentes e ocupantes em contínuo deslocamento, uma cidade que se vê nos filmes de cinema ou nas histórias em quadrinhos. Talvez cinema seja a metáfora mais apropriada para falar da sua produção de arte pois, na verdade, Paulo produz verdadeiros fotogramas de uma cidade que, se devidamente encadeados, produziriam um filme inesperado. Daí vem a necessidade de falar da cidade e seus meios quando falamos deste artista.</p>
+                                
+                                <p>Entretanto, o que seria da cidade sem os seus ocupantes? Estes “outros corpos” também estão presentes na mostra de Paulo, de modo exuberante, através das imagens de pessoas passando, dançando, se exercitando, praticando esportes ou simplesmente existindo, imagens essas que o artista trata com muita graça e movimento, para dar sentido ao espaço da cidade que povoa a sua imaginação.</p>
+                                
+                                <p>Por outro lado, os meios de mobilidade da cidade sempre estiveram presentes na construção de sua trajetória em arte, capturados por sua sensibilidade, em telas, desenhos e camisetas, como componentes indispensáveis à percepção da cidade contemporânea, também como obra de arte, como se espera de um artista de agora, comprometido com o seu contexto. Isto o distingue de outros artistas arquitetos que apenas recortam vieses estáticos da paisagem urbana, em suas obras.</p>
+                                
+                                <p>Destaca-se no trabalho deste artista a expressividade do seu traço, que, apesar de solto e espontâneo, garante, com precisão, os resultados que ele pretende atingir. Artistas assim, fiéis ao bom desenho e crentes da sua necessidade para estruturar a base de um trabalho consistente, são muito raros.</p>
+                                
+                                <p>Sua formação de arquiteto e urbanista oferece grande auxílio na concepção de seu trabalho. Mas não é só. Tendo trabalhado durante anos no Instituto de Proteção do Acervo Cultural, Paulo mergulhou nos meandros da nossa cidade mais antiga e pôde trazer, com sua criação peculiar, uma representação das mais importantes para nossa memória cultural e afetiva: a velha Bahia, com suas portas e janelas, tão impregnada no nosso imaginário. Quem pensa no nosso Centro Antigo, pensa logo em portas e janelas, essas superfícies tão ao alcance do olhar dos passantes naquelas vielas.</p>
+                                
+                                <p>Inquieto por natureza, Paulo nos traz ainda uma série de pequenos objetos feitos com arame de cobre, móveis, pessoas, bicicletas, numa escala miniaturizada desses elementos que, de todo modo, também compõem a cidade, inferindo um viés tridimensional à mostra.</p>
+                                
+                                <p>Esta exposição é atemporal, não mostra uma fase específica da produção de Paulo, mas sim flashs da sua trajetória, indo buscar, inclusive, desenhos com aerógrafo feitos na primeira juventude, até para mostrar como esse olhar sobre a dinâmica urbana o tem acompanhado desde sempre.</p>
+                                
+                                <p>Realizá-la se configura uma grande oportunidade de revelar a singularidade desse artista que tem um olhar tão particular para a cidade e seus meios.</p>
+                            </div>
+                            <div class="curatorial-signature">Chico Mazzoni – Curador</div>
+                        </div>
+                    </div>
+                    <!-- FIM Texto Curatorial -->
+                    
+                    <!-- Texto Crítico - Marcos Rodrigues -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Paulo Canuto: A Cidade em Movimento</h3>
+                            <div class="curatorial-body">
+                                <p>A obra de Paulo Canuto, arquiteto, urbanista e artista plástico, inscreve-se em uma tradição: a de artistas que tomam a cidade não apenas como tema, mas como campo de invenção estética e política. Ao longo de mais de cinco décadas, Canuto deslocou continuamente seu olhar sobre o espaço urbano – ora explorando fachadas, portas e janelas, ora captando corpos em trânsito, ora transformando objetos cotidianos em esculturas e vestimentas – compondo um repertório que se expande em múltiplos suportes e linguagens.</p>
+                                
+                                <p>Seus ciclos pictóricos, como a série Portas e Janelas, remetem a um diálogo histórico com a pintura arquitetônica moderna. Há ecos do lirismo geométrico de Paul Klee, mas também da atmosfera metafísica de Giorgio de Chirico, onde a arquitetura funciona como cenário de afetos e tensões invisíveis. Entretanto, em Canuto, o espaço não é apenas palco da ausência: ele é dinamizado pela presença dos corpos, pelas marcas do cotidiano, pela energia de uma cidade viva.</p>
+                                
+                                <p>Nas obras voltadas ao movimento humano – Walking, Street Dance, Pilates – a filiação se desloca. O traço solto, mas afirmativo, evoca a espontaneidade dos grafismos de Keith Haring, assim como a crença futurista de que "um corpo em movimento contém mais verdade que um corpo em repouso". Mas, ao contrário do futurismo italiano, voltado à exaltação da máquina e da velocidade, Canuto coloca o corpo em primeiro plano – um corpo urbano, coletivo, partilhado, que dança e se exercita em harmonia com a cidade.</p>
+                                
+                                <p>Nas aquarelas da série Mergulhos, realizadas a partir de 2014, a fluidez da água transforma-se em metáfora da própria vida urbana: instável, líquida, atravessada por gestos suspensos. Aqui, a leveza cromática aproxima Canuto do espírito de Raoul Dufy, mas também do experimentalismo moderno que via na aquarela um campo de liberdade. O mergulho é, afinal, um gesto de suspensão: como a cidade, está sempre no limiar entre afundar e emergir.</p>
+                                
+                                <p>As dobraduras em fio de cobre – bicicletas, cadeiras, capoeiristas – trazem à tona outro registro, aquele do desenho no espaço. A leveza com que o fio delineia busca o equilíbrio e a abstração, Canuto insiste no gesto figurativo, urbano, cotidiano. Suas bicicletas e cadeiras não são apenas formas, mas metáforas do viver citadino, objetos que sustentam a memória do corpo no espaço.</p>
+                                
+                                <p>As aerografias dos anos 1980 introduzem uma camada fundamental: a do diálogo com a cultura pop, com a música e com o grafismo. Nesse momento, Canuto aproxima-se de linguagens partilhadas com a estética do graffiti nova-iorquino que se espalhou pelo mundo e com o universo das capas de discos, fanzines e cartazes. É também nesse registro que se percebe a afinidade com o Tropicalismo brasileiro, sobretudo na recusa de separar alta e baixa cultura, arte erudita e popular, tradição e experimentação. Suas camisetas pintadas à mão prolongam essa atitude: são suportes nômades, móveis, que dissolvem a fronteira entre a arte de galeria e a rua.</p>
+                                
+                                <p>Este conjunto de cerca de 60 peças – telas, aquarelas, desenhos, esculturas e vestimentas – articula uma narrativa crítica e poética sobre a cidade. Mais do que um "tema", a cidade em Canuto é metáfora e método: o espaço urbano como fluxo, como sobreposição de tempos e gestos, como arquivo vivo de memórias. Nesse sentido, sua obra ressoa tanto com a Pop Art quanto com os experimentos gráficos do design moderno, mas também com a herança de uma arte brasileira marcada pela relação intensa com a rua.</p>
+                                
+                                <p>Exibir essa mostra no Museu Náutico da Bahia, ao Farol da Barra, é reconhecer que a obra de Canuto se coloca nesse mesmo ponto de encontro: entre o histórico e o contemporâneo, entre o fixo e o transitório, entre a permanência da arquitetura e o fluxo dos corpos.</p>
+                                
+                                <p>Paulo Canuto nos lembra que a cidade não é apenas espaço de passagem: é palco, tela, corpo coletivo. Sua arte nos convida a percebê-la em toda a sua complexidade – fragmentada e coesa, antiga e presente, cotidiana e sublime.</p>
+                            </div>
+                            <div class="curatorial-signature">Marcos Rodrigues<br><span style="font-size: 0.9rem;">Artista Visual, Professor de Urbanismo FAUFBa</span></div>
+                        </div>
+                    </div>
+                    <!-- FIM Texto Crítico Marcos Rodrigues -->
+                </div>
+            </div>
+        </section>
+        <!-- FIM SEÇÃO FOLDER DIVERCIDADE -->
+
+        <section id="telas" class="category-section">
             <div class="category-header">
                 <h2 class="category-title">TELAS</h2>
                 <p class="category-subtitle">15 obras</p>
@@ -1052,6 +1362,29 @@
             </div>
         </section>
     </main>
+
+    <script>
+    // ============================================
+    // NAVEGAÇÃO - RETORNA À PÁGINA 01 DO FOLDER
+    // ============================================
+    (function() {
+        // Link do menu DIVERCIDADE - scroll suave para a primeira página
+        const divercidadeLink = document.querySelector('a[href="#folder-divercidade"]');
+        const firstPage = document.querySelector('.folder-page[data-page="1"]');
+        
+        if (divercidadeLink && firstPage) {
+            divercidadeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Scroll suave para a primeira página do folder
+                firstPage.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            });
+        }
+    })();
+    </script>
 </body>
 </html>
 

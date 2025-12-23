@@ -1,0 +1,95 @@
+
+    <script>
+    // ============================================
+    // NAVEGAÇÃO DO FOLDER DIVERCIDADE
+    // ============================================
+    (function() {
+        const container = document.querySelector('.folder-container');
+        const pages = document.querySelectorAll('.folder-page');
+        const prevBtn = document.querySelector('.folder-prev');
+        const nextBtn = document.querySelector('.folder-next');
+        const dots = document.querySelectorAll('.folder-dot');
+        
+        if (!container || pages.length === 0) return;
+        
+        let currentPage = 0;
+        const totalPages = pages.length;
+        
+        // Touch/Swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        function updateSlider() {
+            container.style.transform = `translateX(-${currentPage * 100}%)`;
+            
+            // Atualiza dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentPage);
+            });
+        }
+        
+        function goToPage(page) {
+            currentPage = Math.max(0, Math.min(page, totalPages - 1));
+            updateSlider();
+        }
+        
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                updateSlider();
+            }
+        }
+        
+        function prevPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                updateSlider();
+            }
+        }
+        
+        // Event listeners
+        if (prevBtn) prevBtn.addEventListener('click', prevPage);
+        if (nextBtn) nextBtn.addEventListener('click', nextPage);
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => goToPage(index));
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const folderSection = document.querySelector('.folder-section');
+            if (!folderSection) return;
+            
+            const rect = folderSection.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            
+            if (isVisible) {
+                if (e.key === 'ArrowLeft') prevPage();
+                if (e.key === 'ArrowRight') nextPage();
+            }
+        });
+        
+        // Touch/Swipe support
+        container.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+        
+        container.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextPage(); // Swipe left = next
+                } else {
+                    prevPage(); // Swipe right = prev
+                }
+            }
+        }
+    })();
+    </script>

@@ -1,0 +1,41 @@
+
+    <!-- ============================================ -->
+    <!-- SEÇÃO DO FOLDER DIVERCIDADE -->
+    <!-- ============================================ -->
+    <section id="folder-divercidade" class="folder-section">
+        <div class="folder-header">
+            <h2 class="folder-title">DiverCidade</h2>
+            <p class="folder-subtitle">Exposição de Arte Urbana</p>
+        </div>
+        
+        <div class="folder-viewer">
+            <div class="folder-container">
+            <div class="folder-page" data-page="1">
+                <img src="folder_images/pagina_01.png" alt="DiverCidade - Página 1" loading="lazy">
+                <span class="page-indicator">1 / 2</span>
+            </div>
+            <div class="folder-page" data-page="2">
+                <img src="folder_images/pagina_02.png" alt="DiverCidade - Página 2" loading="lazy">
+                <span class="page-indicator">2 / 2</span>
+            </div>
+            </div>
+            
+            <!-- Controles de navegação -->
+            <button class="folder-nav folder-prev" aria-label="Página anterior">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="folder-nav folder-next" aria-label="Próxima página">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+            
+            <!-- Indicadores de página -->
+            <div class="folder-dots">
+                <span class="folder-dot active" data-page="1"></span> <span class="folder-dot" data-page="2"></span>
+            </div>
+        </div>
+    </section>
+    <!-- FIM SEÇÃO FOLDER DIVERCIDADE -->
