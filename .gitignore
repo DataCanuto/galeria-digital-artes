@@ -1,0 +1,62 @@
+# Credenciais e tokens sensíveis
+*.env
+.env.*
+*ACCESS_TOKEN*
+
+# Arquivos temporários Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Ambientes virtuais
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Arquivos de desenvolvimento (não publicar no GitHub Pages)
+*.csv
+*.py
+RESUMO.md
+GUIA_MERCADO_PAGO.md
+requirements.txt
+gerador_etiquetas.ipynb
+qr_codes_export/
+
+# Dados locais (não versionados)
+qr_codes_export/*.png
+*.backup

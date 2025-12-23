@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Catálogo - Paulo Canuto</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: #1a1a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header fixo com nome do artista */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 26, 26, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .artist-name {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 0.2rem;
+            text-transform: uppercase;
+            padding: 1.5rem 1rem 1rem;
+            background: linear-gradient(45deg, #ffffff, #cccccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Menu horizontal de categorias */
+        .categories-menu {
+            display: flex;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            padding: 1rem 1rem 1.5rem;
+            gap: 1rem;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+
+        .categories-menu::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .categories-menu::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .categories-menu::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .category-btn {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .category-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .category-btn-name {
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+        }
+
+        .category-btn-name .highlight-c {
+            color: #e53935;
+        }
+
+        .category-btn-count {
+            font-size: 0.75rem;
+            color: #aaaaaa;
+            margin-top: 0.25rem;
+        }
+
+        /* Conteúdo principal */
+        .content {
+            margin-top: 140px;
+            padding: 2rem 1rem;
+        }
+
+        /* Seção de categoria */
+        .category-section {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            scroll-margin-top: 150px;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+        }
+
+        .category-title {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 0.15rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-subtitle {
+            font-size: 1rem;
+            color: #aaaaaa;
+            font-style: italic;
+        }
+
+        /* Grid de obras */
+        .obras-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .obra-item {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .obra-image-container {
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%;
+            background: #f5f5f5;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .obra-image-container img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .obra-details {
+            padding: 1.5rem;
+            color: #2d2d2d;
+            position: relative;
+        }
+
+        .obra-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+            color: #1a1a1a;
+            padding-right: 120px;
+        }
+
+        .obra-technique-year {
+            font-size: 1rem;
+            color: #666666;
+        }
+
+        .mais-info-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: #2d2d2d;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .mais-info-btn:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .obra-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            margin: 3rem auto;
+            max-width: 80%;
+        }
+
+        /* Responsivo - Mobile */
+        @media (max-width: 768px) {
+            .artist-name {
+                font-size: 1.5rem;
+                padding: 1rem 0.5rem 0.75rem;
+            }
+
+            .categories-menu {
+                padding: 0.75rem 0.5rem 1rem;
+                gap: 0.75rem;
+            }
+
+            .category-btn {
+                padding: 0.6rem 1.2rem;
+            }
+
+            .category-btn-name {
+                font-size: 0.85rem;
+            }
+
+            .content {
+                margin-top: 120px;
+                padding: 1rem 0.25rem;
+            }
+
+            .category-title {
+                font-size: 1.6rem;
+            }
+
+            .obra-item {
+                margin: 0;
+            }
+
+            .obra-image-container {
+                padding-bottom: 80%;
+            }
+
+            .obra-details {
+                padding: 1rem;
+            }
+
+            .obra-title {
+                font-size: 1.2rem;
+                padding-right: 0;
+                margin-bottom: 2.5rem;
+            }
+
+            .obra-technique-year {
+                font-size: 0.85rem;
+            }
+
+            .mais-info-btn {
+                position: absolute;
+                top: auto;
+                bottom: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Mobile muito pequeno */
+        @media (max-width: 480px) {
+            .obra-image-container {
+                padding-bottom: 100%;
+            }
+
+            .obra-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* ============================================ */
+        /* ESTILOS DO FOLDER DIVERCIDADE */
+        /* ============================================ */
+        .folder-section {
+            max-width: 100%;
+            margin: 0 auto 4rem;
+            padding: 0;
+            scroll-margin-top: 150px;
+        }
+
+        .folder-header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(180deg, rgba(26, 26, 26, 0.9) 0%, transparent 100%);
+        }
+
+        .folder-title {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+        }
+
+        .folder-title .highlight-c {
+            color: #e53935;
+        }
+
+        .folder-subtitle {
+            font-size: 1.1rem;
+            color: #aaaaaa;
+            font-style: italic;
+            letter-spacing: 0.1rem;
+        }
+
+        .folder-viewer {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            background: #0a0a0a;
+        }
+
+        .folder-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding: 1rem 0;
+        }
+
+        .folder-page {
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem 0 2.5rem 0;
+            background: #fff;
+            border-radius: 15px;
+            border: 2px solid #111;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin: 2.5rem 0 2.5rem 0;
+        }
+
+        .folder-page img {
+            max-width: 100%;
+            max-height: 85vh;
+            height: auto;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            border: 2px solid #111;
+        }
+
+        .page-indicator {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Indicador de página no scroll */
+        .page-indicator {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Responsivo folder */
+        @media (max-width: 768px) {
+            .folder-title {
+                font-size: 2rem;
+            }
+
+            .folder-page {
+                padding: 0.5rem;
+            }
+
+            .page-indicator {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
+            }
+        }
+
+        /* ============================================ */
+        /* ESTILOS DO TEXTO CURATORIAL */
+        /* ============================================ */
+        .curatorial-text {
+            background: #ffffff;
+            padding: 2.5rem 1.5rem;
+            margin: 2.5rem 0 2.5rem 0;
+            border-radius: 15px;
+            border: 2px solid #111;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .curatorial-text-inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .curatorial-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            text-align: center;
+            letter-spacing: 0.02rem;
+        }
+
+        .curatorial-body {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #2d2d2d;
+            text-align: justify;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+        }
+
+        .curatorial-body p {
+            margin-bottom: 1.2rem;
+            text-indent: 1.5rem;
+        }
+
+        .curatorial-body p:first-of-type {
+            text-indent: 0;
+        }
+
+        .curatorial-signature {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            text-align: right;
+            font-style: italic;
+            color: #666666;
+            font-size: 1.1rem;
+        }
+
+        .curatorial-image {
+            width: 100%;
+            margin-top: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        @media (max-width: 480px) {
+            .curatorial-text {
+                padding: 2rem 1rem;
+            }
+
+            .curatorial-title {
+                font-size: 1.3rem;
+            }
+
+            .curatorial-body {
+                font-size: 0.95rem;
+                line-height: 1.75;
+            }
+
+            .curatorial-body p {
+                text-indent: 1rem;
+            }
+        }
+        /* FIM ESTILOS TEXTO CURATORIAL */
+        /* FIM ESTILOS FOLDER */
+    </style>
+</head>
+<body>
+    <!-- Header fixo -->
+    <header class="main-header">
+        <h1 class="artist-name">Paulo Canuto</h1>
+
+        <!-- Menu horizontal de categorias -->
+        <nav class="categories-menu">
+            <a href="#folder-divercidade" class="category-btn">
+                <span class="category-btn-name">DIVER<span class="highlight-c">C</span>IDADE</span>
+                <span class="category-btn-count">Introdução</span>
+            </a>
+            <a href="#telas" class="category-btn">
+                <span class="category-btn-name">TELAS</span>
+                <span class="category-btn-count">15 obras</span>
+            </a>
+            <a href="#aerografias" class="category-btn">
+                <span class="category-btn-name">AEROGRAFIAS</span>
+                <span class="category-btn-count">15 obras</span>
+            </a>
+            <a href="#desenhos_aquarelas" class="category-btn">
+                <span class="category-btn-name">DESENHOS / AQUARELAS</span>
+                <span class="category-btn-count">10 obras</span>
+            </a>
+            <a href="#dobraduras_fio_de_cobre" class="category-btn">
+                <span class="category-btn-name">DOBRADURAS FIO DE COBRE</span>
+                <span class="category-btn-count">9 obras</span>
+            </a>
+            <a href="#camisas" class="category-btn">
+                <span class="category-btn-name">CAMISAS</span>
+                <span class="category-btn-count">13 obras</span>
+            </a>
+        </nav>
+    </header>
+
+    <!-- Conteúdo com todas as obras -->
+    <main class="content">
+        <!-- ============================================ -->
+        <!-- SEÇÃO DO FOLDER DIVERCIDADE -->
+        <!-- ============================================ -->
+        <section id="folder-divercidade" class="folder-section">
+            <div class="folder-header">
+                <h2 class="folder-title">Diver<span class="highlight-c">C</span>idade</h2>
+                <p class="folder-subtitle">Exposição de Arte Urbana</p>
+            </div>
+            
+            <div class="folder-viewer">
+                <div class="folder-container">
+                    <div class="folder-page" data-page="1">
+                        <img src="folder_images/pagina_01.png" alt="DiverCidade - Página 1" loading="lazy">
+                    </div>
+                    
+                    <!-- Texto do Artista - Paulo Canuto -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Minhas palavras sobre a mostra</h3>
+                            <div class="curatorial-body">
+                                <p>Arquiteto urbanista e artista plástico, desenho e pinto há mais de 50 anos com um olhar investigativo sobre o ambiente urbano, com o movimento contínuo de seus ocupantes, o design dos meios de transporte, sua arquitetura e seus elementos históricos.</p>
+                                
+                                <p>Autodidata, sempre gostei de experimentar as diversas técnicas de pintura e aplicá-las em suportes diferenciados. Desde os anos 80 utilizo a aerografia como uma das técnicas favoritas, embora admita que o prazer e a emoção do desenho e da pintura tradicionais são insubstituíveis/incomparáveis.</p>
+                                
+                                <p>A partir da aerografia dei início às pinturas em papel e tecido através da produção de posters, o que me motivou às primeiras exposições.</p>
+                                
+                                <p>É deste período que surgiu a vontade de explorar a pintura em tecido, utilizando como suporte a camiseta básica de algodão, motivada pela possibilidade da livre circulação e assim divulgar minha produção artística.</p>
+                                
+                                <p>Desde essa época tenho identificado uma tendência ao estilo pop, nos meus trabalhos, com a utilização de temas urbanos, esportivos, corporais, design de carros, ícones da música e movimentos de dança.</p>
+                                
+                                <p>Atualmente tenho buscado diversificar as técnicas de pintura com a introdução de serigrafia e uso de projetor, bem como de outros suportes como MDF, papel pluma, compensado, fórmica e placa cimentícia.</p>
+                                
+                                <p>Em busca de novos experimentos surgiu a ideia de reciclar um precioso refugo da construção civil - o fio de cobre desencapado, utilizando-o para fazer dobraduras que resultam em objetos e elementos expressivos.</p>
+                                
+                                <p>A atual mostra denominada DiverCidade traz um resumo das experiências vivenciadas ao longo desses anos, no qual os temas e imagens estão entrelaçados por um fio cujo foco é a diversidade urbana.</p>
+                            </div>
+                            <div class="curatorial-signature">Paulo Canuto, outubro 2025</div>
+                            
+                        </div>
+                    </div>
+                    <!-- FIM Texto do Artista -->
+                    
+                                        
+                    <!-- Texto Curatorial - Chico Mazzoni -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Um artista, a cidade, seus ocupantes e seus meios</h3>
+                            <div class="curatorial-body">
+                                <p>Paulo Canuto olha para a cidade desde que eu o conheço. E isso vem das nossas adolescências, colegas num curso de inglês. Entretanto não se trata de um olhar para uma cidade que se captura numa fotografia. Ele olha para uma cidade que se move, uma cidade viva, dinâmica, com seus componentes e ocupantes em contínuo deslocamento, uma cidade que se vê nos filmes de cinema ou nas histórias em quadrinhos. Talvez cinema seja a metáfora mais apropriada para falar da sua produção de arte pois, na verdade, Paulo produz verdadeiros fotogramas de uma cidade que, se devidamente encadeados, produziriam um filme inesperado. Daí vem a necessidade de falar da cidade e seus meios quando falamos deste artista.</p>
+                                
+                                <p>Entretanto, o que seria da cidade sem os seus ocupantes? Estes “outros corpos” também estão presentes na mostra de Paulo, de modo exuberante, através das imagens de pessoas passando, dançando, se exercitando, praticando esportes ou simplesmente existindo, imagens essas que o artista trata com muita graça e movimento, para dar sentido ao espaço da cidade que povoa a sua imaginação.</p>
+                                
+                                <p>Por outro lado, os meios de mobilidade da cidade sempre estiveram presentes na construção de sua trajetória em arte, capturados por sua sensibilidade, em telas, desenhos e camisetas, como componentes indispensáveis à percepção da cidade contemporânea, também como obra de arte, como se espera de um artista de agora, comprometido com o seu contexto. Isto o distingue de outros artistas arquitetos que apenas recortam vieses estáticos da paisagem urbana, em suas obras.</p>
+                                
+                                <p>Destaca-se no trabalho deste artista a expressividade do seu traço, que, apesar de solto e espontâneo, garante, com precisão, os resultados que ele pretende atingir. Artistas assim, fiéis ao bom desenho e crentes da sua necessidade para estruturar a base de um trabalho consistente, são muito raros.</p>
+                                
+                                <p>Sua formação de arquiteto e urbanista oferece grande auxílio na concepção de seu trabalho. Mas não é só. Tendo trabalhado durante anos no Instituto de Proteção do Acervo Cultural, Paulo mergulhou nos meandros da nossa cidade mais antiga e pôde trazer, com sua criação peculiar, uma representação das mais importantes para nossa memória cultural e afetiva: a velha Bahia, com suas portas e janelas, tão impregnada no nosso imaginário. Quem pensa no nosso Centro Antigo, pensa logo em portas e janelas, essas superfícies tão ao alcance do olhar dos passantes naquelas vielas.</p>
+                                
+                                <p>Inquieto por natureza, Paulo nos traz ainda uma série de pequenos objetos feitos com arame de cobre, móveis, pessoas, bicicletas, numa escala miniaturizada desses elementos que, de todo modo, também compõem a cidade, inferindo um viés tridimensional à mostra.</p>
+                                
+                                <p>Esta exposição é atemporal, não mostra uma fase específica da produção de Paulo, mas sim flashs da sua trajetória, indo buscar, inclusive, desenhos com aerógrafo feitos na primeira juventude, até para mostrar como esse olhar sobre a dinâmica urbana o tem acompanhado desde sempre.</p>
+                                
+                                <p>Realizá-la se configura uma grande oportunidade de revelar a singularidade desse artista que tem um olhar tão particular para a cidade e seus meios.</p>
+                            </div>
+                            <div class="curatorial-signature">Chico Mazzoni – Curador</div>
+                        </div>
+                    </div>
+                    <!-- FIM Texto Curatorial -->
+                    
+                    <!-- Texto Crítico - Marcos Rodrigues -->
+                    <div class="curatorial-text">
+                        <div class="curatorial-text-inner">
+                            <h3 class="curatorial-title">Paulo Canuto: A Cidade em Movimento</h3>
+                            <div class="curatorial-body">
+                                <p>A obra de Paulo Canuto, arquiteto, urbanista e artista plástico, inscreve-se em uma tradição: a de artistas que tomam a cidade não apenas como tema, mas como campo de invenção estética e política. Ao longo de mais de cinco décadas, Canuto deslocou continuamente seu olhar sobre o espaço urbano – ora explorando fachadas, portas e janelas, ora captando corpos em trânsito, ora transformando objetos cotidianos em esculturas e vestimentas – compondo um repertório que se expande em múltiplos suportes e linguagens.</p>
+                                
+                                <p>Seus ciclos pictóricos, como a série Portas e Janelas, remetem a um diálogo histórico com a pintura arquitetônica moderna. Há ecos do lirismo geométrico de Paul Klee, mas também da atmosfera metafísica de Giorgio de Chirico, onde a arquitetura funciona como cenário de afetos e tensões invisíveis. Entretanto, em Canuto, o espaço não é apenas palco da ausência: ele é dinamizado pela presença dos corpos, pelas marcas do cotidiano, pela energia de uma cidade viva.</p>
+                                
+                                <p>Nas obras voltadas ao movimento humano – Walking, Street Dance, Pilates – a filiação se desloca. O traço solto, mas afirmativo, evoca a espontaneidade dos grafismos de Keith Haring, assim como a crença futurista de que "um corpo em movimento contém mais verdade que um corpo em repouso". Mas, ao contrário do futurismo italiano, voltado à exaltação da máquina e da velocidade, Canuto coloca o corpo em primeiro plano – um corpo urbano, coletivo, partilhado, que dança e se exercita em harmonia com a cidade.</p>
+                                
+                                <p>Nas aquarelas da série Mergulhos, realizadas a partir de 2014, a fluidez da água transforma-se em metáfora da própria vida urbana: instável, líquida, atravessada por gestos suspensos. Aqui, a leveza cromática aproxima Canuto do espírito de Raoul Dufy, mas também do experimentalismo moderno que via na aquarela um campo de liberdade. O mergulho é, afinal, um gesto de suspensão: como a cidade, está sempre no limiar entre afundar e emergir.</p>
+                                
+                                <p>As dobraduras em fio de cobre – bicicletas, cadeiras, capoeiristas – trazem à tona outro registro, aquele do desenho no espaço. A leveza com que o fio delineia busca o equilíbrio e a abstração, Canuto insiste no gesto figurativo, urbano, cotidiano. Suas bicicletas e cadeiras não são apenas formas, mas metáforas do viver citadino, objetos que sustentam a memória do corpo no espaço.</p>
+                                
+                                <p>As aerografias dos anos 1980 introduzem uma camada fundamental: a do diálogo com a cultura pop, com a música e com o grafismo. Nesse momento, Canuto aproxima-se de linguagens partilhadas com a estética do graffiti nova-iorquino que se espalhou pelo mundo e com o universo das capas de discos, fanzines e cartazes. É também nesse registro que se percebe a afinidade com o Tropicalismo brasileiro, sobretudo na recusa de separar alta e baixa cultura, arte erudita e popular, tradição e experimentação. Suas camisetas pintadas à mão prolongam essa atitude: são suportes nômades, móveis, que dissolvem a fronteira entre a arte de galeria e a rua.</p>
+                                
+                                <p>Este conjunto de cerca de 60 peças – telas, aquarelas, desenhos, esculturas e vestimentas – articula uma narrativa crítica e poética sobre a cidade. Mais do que um "tema", a cidade em Canuto é metáfora e método: o espaço urbano como fluxo, como sobreposição de tempos e gestos, como arquivo vivo de memórias. Nesse sentido, sua obra ressoa tanto com a Pop Art quanto com os experimentos gráficos do design moderno, mas também com a herança de uma arte brasileira marcada pela relação intensa com a rua.</p>
+                                
+                                <p>Exibir essa mostra no Museu Náutico da Bahia, ao Farol da Barra, é reconhecer que a obra de Canuto se coloca nesse mesmo ponto de encontro: entre o histórico e o contemporâneo, entre o fixo e o transitório, entre a permanência da arquitetura e o fluxo dos corpos.</p>
+                                
+                                <p>Paulo Canuto nos lembra que a cidade não é apenas espaço de passagem: é palco, tela, corpo coletivo. Sua arte nos convida a percebê-la em toda a sua complexidade – fragmentada e coesa, antiga e presente, cotidiana e sublime.</p>
+                            </div>
+                            <div class="curatorial-signature">Marcos Rodrigues<br><span style="font-size: 0.9rem;">Artista Visual, Professor de Urbanismo FAUFBa</span></div>
+                        </div>
+                    </div>
+                    <!-- FIM Texto Crítico Marcos Rodrigues -->
+                </div>
+            </div>
+        </section>
+        <!-- FIM SEÇÃO FOLDER DIVERCIDADE -->
+
+        <section id="telas" class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">TELAS</h2>
+                <p class="category-subtitle">15 obras</p>
+            </div>
+            <div class="obras-container">
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 01...PORTAS E JANELAS 1.jpg" alt="PORTAS E JANELAS 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS E JANELAS 1</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2018</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_1/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 02...PORTAS E JANELAS 2.jpg" alt="PORTAS E JANELAS 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS E JANELAS 2</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2024</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_2/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 03...PORTAS E JANELAS 3.jpg" alt="PORTAS E JANELAS 3" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS E JANELAS 3</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2024</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_3/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 04 ...PORTAS E JANELAS 4.jpg" alt="PORTAS E JANELAS 4" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS E JANELAS 4</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2024</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_4/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 05 - PORTAS E JANELAS 5.jpg" alt="PORTAS E JANELAS 5 " loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS E JANELAS 5 </h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2024</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_5/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 06 - CASA CURITIBA 1.jpg" alt="CASA CURITIBA 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CASA CURITIBA 1</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2019</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_6/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 07 - CASA CURITIBA 2.jpg" alt="CASA CURITIBA 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CASA CURITIBA 2</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2019</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_7/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 08-FUSCA VERMELHO.jpg" alt="FUSCA VERMELHO" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">FUSCA VERMELHO</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2006</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_8/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 09 - WALKING.png" alt="WALKING" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">WALKING</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2024</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_9/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 10-SUCATA.jpg" alt="SUCATA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">SUCATA</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2005</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_10/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 11 - STREET DANCE.jpg" alt="STREET DANCE" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">STREET DANCE</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2011</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_11/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 12-PILATES.jpg" alt="PILATES" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PILATES</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2012</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_12/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 13 - OLD TIMES.jpg" alt="OLD TIMES" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">OLD TIMES</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2012</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_13/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 14-CENAS URBANAS.jpg" alt="CENAS URBANAS" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CENAS URBANAS</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2006</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_14/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 15-FERRO VELHO.png" alt="FERRO VELHO" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">FERRO VELHO</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TELA - 2023</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_15/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="aerografias" class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">AEROGRAFIAS</h2>
+                <p class="category-subtitle">15 obras</p>
+            </div>
+            <div class="obras-container">
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 16- MAN 1.jpg" alt="MAN 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MAN 1</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_16/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 17-MAN 2.jpg" alt="MAN 2 (CINZA)" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MAN 2 (CINZA)</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_17/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 18 - MAN 3.jpg" alt="MAN 3" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MAN 3</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_18/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 19-U2.jpg" alt="U2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">U2</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_19/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 20-PAUL SIMONON.jpg" alt="PAUL SIMONON" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PAUL SIMONON</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_20/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 21-VOLLEY.jpg" alt="VOLLEY" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">VOLLEY</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_21/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 22-SKATE 1.jpg" alt="SKATE 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">SKATE 1</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_22/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 23 - SKATE 2.jpg" alt="SKATE 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">SKATE 2</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_23/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 24 - PERFIL.jpg" alt="PERFIL" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PERFIL</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_24/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 25 - BLACK SHOES.jpg" alt="BLACK SHOES/ COM MOLDURA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">BLACK SHOES/ COM MOLDURA</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_25/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 26-OLDS.jpg" alt="OLDS" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">OLDS</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_26/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 27-PROTÓTIPO FUSCA.jpg" alt="PROTÓTIPO FUSCA/ COM MOLDURA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PROTÓTIPO FUSCA/ COM MOLDURA</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_27/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 28 - TORSO.jpg" alt="TORSO/ COM MOLDURA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">TORSO/ COM MOLDURA</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_28/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 29-ATLETA.jpg" alt="ATLETA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">ATLETA</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_29/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 30 - CARTÃO POSTAL.png" alt="CARTÃO POSTAL" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CARTÃO POSTAL</h2>
+                    <p class="obra-technique-year">NANQUIM SOBRE PAPEL - 1988</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_30/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="desenhos_aquarelas" class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">DESENHOS / AQUARELAS</h2>
+                <p class="category-subtitle">10 obras</p>
+            </div>
+            <div class="obras-container">
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 31 - STRESS URBANO .jpg" alt="STRESS URBANO" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">STRESS URBANO</h2>
+                    <p class="obra-technique-year">LÁPIS E CANETA S/PAPEL - 2014</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_31/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 32-STREET DANCE 2.jpg" alt="STREET DANCE 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">STREET DANCE 2</h2>
+                    <p class="obra-technique-year">GRAFITE SOBRE PAPEL - 2014</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_32/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 33 - SEM GÁS.jpg" alt="SEM GÁS" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">SEM GÁS</h2>
+                    <p class="obra-technique-year">GRAFITE SOBRE PAPEL - 2014</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_33/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 34 - MERGULHO 1.jpg" alt="MERGULHO 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 1</h2>
+                    <p class="obra-technique-year">CANETA SOBRE PAPEL - 1984</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_34/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 35-MERGULHO 2.jpg" alt="MERGULHO 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 2</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_35/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 36  MERGULHO 3.jpg" alt="MERGULHO 3" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 3</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2021</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_36/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 37  MERGULHO 4 .jpg" alt="MERGULHO 4" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 4</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2021</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_37/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 38 - MERGULHO 5.jpg" alt="MERGULHO 5" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 5</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_38/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 39 - MERGULHO 6.jpeg" alt="MERGULHO 6" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 6</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_39/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 40 - MERGULHO 7.jpg" alt="MERGULHO 7" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MERGULHO 7</h2>
+                    <p class="obra-technique-year">TINTA LÍQUIDA SOBRE PAPEL - 2021</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_40/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="dobraduras_fio_de_cobre" class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">DOBRADURAS FIO DE COBRE</h2>
+                <p class="category-subtitle">9 obras</p>
+            </div>
+            <div class="obras-container">
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 41 - BIKE 1.jpg" alt="BIKE 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">BIKE 1</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_41/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 42 - CAPOEIRISTA 1.jpg" alt="CAPOEIRA 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CAPOEIRA 1</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_42/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 43 - CAPOEIRISTA 2.jpg" alt="CAPOEIRA 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CAPOEIRA 2</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_43/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 44 - DANÇA 1.jpg" alt="DANÇA 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">DANÇA 1</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_44/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 45 - DANÇA 2 .jpg" alt="DANÇA 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">DANÇA 2</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_45/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 46 - DANÇA 3.jpg" alt="DANÇA 3" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">DANÇA 3</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_46/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 47 MÚSICO 1.jpg" alt="MÚSICO 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MÚSICO 1</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_47/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 48 - MÚSICO 2.jpg" alt="MÚSICO 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">MÚSICO 2</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_48/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 49 -CADEIRAS 1.2.3.4.jpg" alt="4 CADEIRAS" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">4 CADEIRAS</h2>
+                    <p class="obra-technique-year">FIO DE COBRE DESENCAPADO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_49/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            </div>
+        </section>
+
+        <section id="camisas" class="category-section">
+            <div class="category-header">
+                <h2 class="category-title">CAMISAS</h2>
+                <p class="category-subtitle">13 obras</p>
+            </div>
+            <div class="obras-container">
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 50 - CAMISA KOMBI 1.jpg" alt="KOMBI 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">KOMBI 1</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_50/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 51 - CAMISA KOMBI 2.jpg" alt="KOMBI 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">KOMBI 2</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_51/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 52 - CAMISA P&J 1.jpg" alt="PORTAS JANELAS 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS JANELAS 1</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_52/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 53 - CAMISA GRADIL.jpg" alt="GRADIL SÉC. XIX" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">GRADIL SÉC. XIX</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_53/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 54 - PENAS TROPICAIS.jpg" alt="PENAS TROPICAIS" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PENAS TROPICAIS</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_54/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 55-CAMISA JEEP.jpg" alt="JEEP" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">JEEP</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_55/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 56 - CAMISA PORTAS E JANELAS 2.jpg" alt="PORTAS JANELAS 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">PORTAS JANELAS 2</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_56/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 57-CAMISA BIKE 1.jpg" alt="BIKE 1" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">BIKE 1</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_57/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 58 CAMISA BIKE 2.jpg" alt="BIKE 2" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">BIKE 2</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_58/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 59-CAMISA LAMBRETTA.jpg" alt="LAMBRETTA" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">LAMBRETTA</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_59/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 60 - CAMISA CHEVROLET.jpg" alt="CHEVROLET" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">CHEVROLET</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_60/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 61 - CAMISA KOMBI 3.jpg" alt="KOMBI 3" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">KOMBI 3</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_61/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            <div class="obra-divider"></div>
+            <div class="obra-item">
+                <div class="obra-image-container">
+                    <img src="../assets/img/REF 62 - CAMISA GORDINI.jpg" alt="GORDINI" loading="lazy">
+                </div>
+                <div class="obra-details">
+                    <h2 class="obra-title">GORDINI</h2>
+                    <p class="obra-technique-year">ACRÍLICA SOBRE TECIDO - 2025</p>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_62/index.html" class="mais-info-btn">Mais Info</a>
+                </div>
+            </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+    // ============================================
+    // NAVEGAÇÃO - RETORNA À PÁGINA 01 DO FOLDER
+    // ============================================
+    (function() {
+        // Link do menu DIVERCIDADE - scroll suave para a primeira página
+        const divercidadeLink = document.querySelector('a[href="#folder-divercidade"]');
+        const firstPage = document.querySelector('.folder-page[data-page="1"]');
+        
+        if (divercidadeLink && firstPage) {
+            divercidadeLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Scroll suave para a primeira página do folder
+                firstPage.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            });
+        }
+    })();
+    </script>
+</body>
+</html>
+
+
+
