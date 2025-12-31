@@ -1,4 +1,15 @@
-﻿/* Reset Básico */
+﻿/* Preço da Obra */
+
+.preco-obra {
+    font-size: 1.2em;
+    color: #5a5858;
+    margin: 10px 0 20px 0;
+    font-weight: bold;
+}
+
+
+/* Reset Básico */
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +28,9 @@ body {
     padding: 20px;
 }
 
+
 /* Container Principal */
+
 .container {
     max-width: 600px;
     width: 100%;
@@ -26,7 +39,9 @@ body {
     text-align: center;
 }
 
+
 /* Imagem da Obra */
+
 .artwork-image-container {
     width: 100%;
     margin-bottom: 30px;
@@ -42,7 +57,9 @@ body {
     object-fit: contain;
 }
 
+
 /* Nome do Artista */
+
 h1 {
     font-size: 1.8em;
     font-weight: 700;
@@ -52,7 +69,9 @@ h1 {
     color: #000000;
 }
 
+
 /* Título da Obra */
+
 h2.artwork-title {
     font-family: 'Playfair Display', serif;
     font-size: 2.2em;
@@ -61,15 +80,19 @@ h2.artwork-title {
     color: #000000;
 }
 
+
 /* Divisor */
+
 .divider {
-    width: 60%;
+    width: 80%;
     height: 2px;
     background-color: #000000;
     margin: 20px auto;
 }
 
+
 /* Detalhes da Obra */
+
 .details-section {
     margin: 30px 0;
     font-size: 1.1em;
@@ -81,124 +104,19 @@ h2.artwork-title {
     color: #333333;
 }
 
-/* Seção de Pagamento */
-.payment-section {
-    margin: 30px 0;
+
+/* Parcelamento info */
+
+.parcelamento-info {
+    color: #555;
+    font-size: 1em;
+    margin-bottom: 10px;
+    font-style: italic;
 }
 
-.payment-info {
-    font-size: 0.85em;
-    font-weight: 300;
-    color: #8B7355;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.payment-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-/* Botão Cartão de Crédito */
-.payment-button-credit {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 30px;
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    min-height: 75px;
-    background: linear-gradient(135deg, #000000 0%, #009EE3 100%);
-    color: #FFFFFF;
-    border: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.payment-button-credit:hover {
-    background: #7c7a05 100%;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 158, 227, 0.5);
-}
-
-/* Botão PIX */
-.payment-button-pix {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 18px 30px;
-    text-decoration: none;
-    font-weight: 700;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    min-height: 75px;
-    background: linear-gradient(135deg, #000000 0%, #009EE3 100%);
-    color: #FFFFFF;
-    border: none;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.payment-button-pix:hover {
-    background:  #11b7ef;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 168, 89, 0.5);
-}
-
-.payment-label {
-    font-size: 0.9em;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    font-weight: 700;
-}
-
-.payment-value {
-    font-size: 1.4em;
-    font-weight: 800;
-    letter-spacing: 0.5px;
-}
-
-.payment-installments {
-    font-size: 0.75em;
-    opacity: 0.9;
-    font-weight: 400;
-    letter-spacing: 1px;
-    margin-top: 3px;
-}
-
-.payment-discount {
-    font-size: 0.75em;
-    font-weight: 600;
-    letter-spacing: 1px;
-    margin-top: 3px;
-    color: #FFEB3B;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-/* Seção Acervo Pessoal */
-.acervo-section {
-    margin: 30px 0;
-    padding: 20px;
-}
-
-.acervo-label {
-    font-size: 1.1em;
-    font-weight: 300;
-    color: #8B7355;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-align: center;
-}
 
 /* Seção de CTA */
+
 .cta-section {
     display: flex;
     flex-direction: column;
@@ -208,6 +126,7 @@ h2.artwork-title {
 
 
 /* Botão Catálogo */
+
 .catalog-button {
     display: block;
     padding: 15px 30px;
@@ -228,43 +147,43 @@ h2.artwork-title {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+
+/* Botão whatsapp */
+
+.whatsapp-button {
+    display: block;
+    padding: 10px 30px;
+    background-color: #000000;
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.8em;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
 /* Responsivo Mobile */
+
 @media (max-width: 768px) {
     h1 {
         font-size: 1.4em;
         letter-spacing: 2px;
     }
-
     h2.artwork-title {
         font-size: 1.6em;
     }
-
     .details-section {
         font-size: 1em;
     }
-
-    .payment-info {
-        font-size: 0.8em;
-    }
-
-    .payment-button-credit,
-    .payment-button-pix {
-        padding: 15px 25px;
-        min-height: 65px;
-    }
-
-    .payment-label {
-        font-size: 0.8em;
-    }
-
-    .payment-value {
-        font-size: 1.2em;
-    }
-
-    .acervo-label {
+    .preco-obra {
         font-size: 1em;
     }
-
+    .parcelamento-info {
+        font-size: 0.9em;
+    }
     .catalog-button {
         font-size: 1em;
         padding: 12px 25px;
@@ -275,38 +194,19 @@ h2.artwork-title {
     .container {
         padding: 20px 15px;
     }
-
     h1 {
         font-size: 1.2em;
     }
-
     h2.artwork-title {
         font-size: 1.4em;
     }
-
     .details-section {
         font-size: 0.9em;
     }
-
-    .payment-info {
+    .preco-obra {
+        font-size: 0.80em;
+    }
+    .parcelamento-info {
         font-size: 0.75em;
-    }
-
-    .payment-button-credit,
-    .payment-button-pix {
-        padding: 12px 20px;
-        min-height: 60px;
-    }
-
-    .payment-label {
-        font-size: 0.75em;
-    }
-
-    .payment-value {
-        font-size: 1.1em;
-    }
-
-    .acervo-label {
-        font-size: 0.9em;
     }
 }
