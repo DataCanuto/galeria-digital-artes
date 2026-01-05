@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="description" content="Catálogo Digital de Obras de Paulo Canuto">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <title>Catálogo - Paulo Canuto</title>
     <style>
         * {
@@ -187,6 +190,19 @@
             height: auto;
             object-fit: contain;
             transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+
+        .obra-image-container img[loading="lazy"] {
+            opacity: 0.95;
+            background: linear-gradient(90deg, #efefef 25%, #dfdfdf 50%, #efefef 75%);
+            background-size: 200% 100%;
+            animation: skeleton-loading 1.5s infinite;
+        }
+
+        @keyframes skeleton-loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         .obra-image-container a:hover img {
@@ -570,7 +586,7 @@
             <div class="folder-viewer">
                 <div class="folder-container">
                     <div class="folder-page" data-page="1">
-                        <img src="folder_images/pagina_01.png" alt="DiverCidade - Página 1" loading="lazy">
+                        <img src="folder_images/pagina_01.png" alt="DiverCidade - Página 1" loading="lazy" decoding="async">
                     </div>
                     
                     <!-- Texto do Artista - Paulo Canuto -->
@@ -679,7 +695,7 @@
             <div class="obras-container">
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_1/index.html"><img src="../assets/img/REF 01...PORTAS E JANELAS 1.jpg" alt="PORTAS E JANELAS 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_1/index.html"><img src="../assets/img/REF 01...PORTAS E JANELAS 1.jpg" alt="PORTAS E JANELAS 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS E JANELAS 1</h2>
@@ -690,7 +706,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_2/index.html"><img src="../assets/img/REF 02...PORTAS E JANELAS 2.jpg" alt="PORTAS E JANELAS 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_2/index.html"><img src="../assets/img/REF 02...PORTAS E JANELAS 2.jpg" alt="PORTAS E JANELAS 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS E JANELAS 2</h2>
@@ -701,7 +717,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_3/index.html"><img src="../assets/img/REF 03...PORTAS E JANELAS 3.jpg" alt="PORTAS E JANELAS 3" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_3/index.html"><img src="../assets/img/REF 03...PORTAS E JANELAS 3.jpg" alt="PORTAS E JANELAS 3" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS E JANELAS 3</h2>
@@ -712,7 +728,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_4/index.html"><img src="../assets/img/REF 04 ...PORTAS E JANELAS 4.jpg" alt="PORTAS E JANELAS 4" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_4/index.html"><img src="../assets/img/REF 04 ...PORTAS E JANELAS 4.jpg" alt="PORTAS E JANELAS 4" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS E JANELAS 4</h2>
@@ -723,7 +739,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_5/index.html"><img src="../assets/img/REF 05 - PORTAS E JANELAS 5.jpg" alt="PORTAS E JANELAS 5 " loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_5/index.html"><img src="../assets/img/REF 05 - PORTAS E JANELAS 5.jpg" alt="PORTAS E JANELAS 5 " loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS E JANELAS 5 </h2>
@@ -734,7 +750,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_6/index.html"><img src="../assets/img/REF 06 - CASA CURITIBA 1.jpg" alt="CASA CURITIBA 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_6/index.html"><img src="../assets/img/REF 06 - CASA CURITIBA 1.jpg" alt="CASA CURITIBA 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CASA CURITIBA 1</h2>
@@ -745,7 +761,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_7/index.html"><img src="../assets/img/REF 07 - CASA CURITIBA 2.jpg" alt="CASA CURITIBA 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_7/index.html"><img src="../assets/img/REF 07 - CASA CURITIBA 2.jpg" alt="CASA CURITIBA 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CASA CURITIBA 2</h2>
@@ -756,7 +772,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_8/index.html"><img src="../assets/img/REF 08-FUSCA VERMELHO.jpg" alt="FUSCA VERMELHO" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_8/index.html"><img src="../assets/img/REF 08-FUSCA VERMELHO.jpg" alt="FUSCA VERMELHO" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">FUSCA VERMELHO</h2>
@@ -767,7 +783,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_9/index.html"><img src="../assets/img/REF 09 - WALKING.png" alt="WALKING" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_9/index.html"><img src="../assets/img/REF 09 - WALKING.png" alt="WALKING" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">WALKING</h2>
@@ -778,7 +794,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_10/index.html"><img src="../assets/img/REF 10-SUCATA.jpg" alt="SUCATA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_10/index.html"><img src="../assets/img/REF 10-SUCATA.jpg" alt="SUCATA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">SUCATA</h2>
@@ -789,7 +805,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_11/index.html"><img src="../assets/img/REF 11 - STREET DANCE.jpg" alt="STREET DANCE" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_11/index.html"><img src="../assets/img/REF 11 - STREET DANCE.jpg" alt="STREET DANCE" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">STREET DANCE</h2>
@@ -800,7 +816,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_12/index.html"><img src="../assets/img/REF 12-PILATES.jpg" alt="PILATES" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_12/index.html"><img src="../assets/img/REF 12-PILATES.jpg" alt="PILATES" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PILATES</h2>
@@ -811,7 +827,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_13/index.html"><img src="../assets/img/REF 13 - OLD TIMES.jpg" alt="OLD TIMES" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_13/index.html"><img src="../assets/img/REF 13 - OLD TIMES.jpg" alt="OLD TIMES" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">OLD TIMES</h2>
@@ -822,7 +838,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_14/index.html"><img src="../assets/img/REF 14-CENAS URBANAS.jpg" alt="CENAS URBANAS" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_14/index.html"><img src="../assets/img/REF 14-CENAS URBANAS.jpg" alt="CENAS URBANAS" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CENAS URBANAS</h2>
@@ -833,7 +849,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_15/index.html"><img src="../assets/img/REF 15-FERRO VELHO.png" alt="FERRO VELHO" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_15/index.html"><img src="../assets/img/REF 15-FERRO VELHO.png" alt="FERRO VELHO" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">FERRO VELHO</h2>
@@ -852,7 +868,7 @@
             <div class="obras-container">
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_16/index.html"><img src="../assets/img/REF 16- MAN 1.jpg" alt="MAN 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_16/index.html"><img src="../assets/img/REF 16- MAN 1.jpg" alt="MAN 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MAN 1</h2>
@@ -863,7 +879,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_17/index.html"><img src="../assets/img/REF 17-MAN 2.jpg" alt="MAN 2 (CINZA)" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_17/index.html"><img src="../assets/img/REF 17-MAN 2.jpg" alt="MAN 2 (CINZA)" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MAN 2 (CINZA)</h2>
@@ -874,7 +890,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_18/index.html"><img src="../assets/img/REF 18 - MAN 3.jpg" alt="MAN 3" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_18/index.html"><img src="../assets/img/REF 18 - MAN 3.jpg" alt="MAN 3" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MAN 3</h2>
@@ -885,7 +901,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_19/index.html"><img src="../assets/img/REF 19-U2.jpg" alt="U2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_19/index.html"><img src="../assets/img/REF 19-U2.jpg" alt="U2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">U2</h2>
@@ -896,7 +912,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_20/index.html"><img src="../assets/img/REF 20-PAUL SIMONON.jpg" alt="PAUL SIMONON" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_20/index.html"><img src="../assets/img/REF 20-PAUL SIMONON.jpg" alt="PAUL SIMONON" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PAUL SIMONON</h2>
@@ -907,7 +923,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_21/index.html"><img src="../assets/img/REF 21-VOLLEY.jpg" alt="VOLLEY" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_21/index.html"><img src="../assets/img/REF 21-VOLLEY.jpg" alt="VOLLEY" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">VOLLEY</h2>
@@ -918,7 +934,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_22/index.html"><img src="../assets/img/REF 22-SKATE 1.jpg" alt="SKATE 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_22/index.html"><img src="../assets/img/REF 22-SKATE 1.jpg" alt="SKATE 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">SKATE 1</h2>
@@ -929,7 +945,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_23/index.html"><img src="../assets/img/REF 23 - SKATE 2.jpg" alt="SKATE 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_23/index.html"><img src="../assets/img/REF 23 - SKATE 2.jpg" alt="SKATE 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">SKATE 2</h2>
@@ -940,7 +956,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_24/index.html"><img src="../assets/img/REF 24 - PERFIL.jpg" alt="PERFIL" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_24/index.html"><img src="../assets/img/REF 24 - PERFIL.jpg" alt="PERFIL" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PERFIL</h2>
@@ -951,7 +967,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_25/index.html"><img src="../assets/img/REF 25 - BLACK SHOES.jpg" alt="BLACK SHOES/ COM MOLDURA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_25/index.html"><img src="../assets/img/REF 25 - BLACK SHOES.jpg" alt="BLACK SHOES/ COM MOLDURA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">BLACK SHOES/ COM MOLDURA</h2>
@@ -962,7 +978,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_26/index.html"><img src="../assets/img/REF 26-OLDS.jpg" alt="OLDS" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_26/index.html"><img src="../assets/img/REF 26-OLDS.jpg" alt="OLDS" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">OLDS</h2>
@@ -973,7 +989,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_27/index.html"><img src="../assets/img/REF 27-PROTÓTIPO FUSCA.jpg" alt="PROTÓTIPO FUSCA/ COM MOLDURA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_27/index.html"><img src="../assets/img/REF 27-PROTÓTIPO FUSCA.jpg" alt="PROTÓTIPO FUSCA/ COM MOLDURA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PROTÓTIPO FUSCA/ COM MOLDURA</h2>
@@ -984,7 +1000,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_28/index.html"><img src="../assets/img/REF 28 - TORSO.jpg" alt="TORSO/ COM MOLDURA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_28/index.html"><img src="../assets/img/REF 28 - TORSO.jpg" alt="TORSO/ COM MOLDURA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">TORSO/ COM MOLDURA</h2>
@@ -995,7 +1011,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_29/index.html"><img src="../assets/img/REF 29-ATLETA.jpg" alt="ATLETA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_29/index.html"><img src="../assets/img/REF 29-ATLETA.jpg" alt="ATLETA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">ATLETA</h2>
@@ -1006,7 +1022,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_30/index.html"><img src="../assets/img/REF 30 - CARTÃO POSTAL.png" alt="CARTÃO POSTAL" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_30/index.html"><img src="../assets/img/REF 30 - CARTÃO POSTAL.png" alt="CARTÃO POSTAL" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CARTÃO POSTAL</h2>
@@ -1025,7 +1041,7 @@
             <div class="obras-container">
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_31/index.html"><img src="../assets/img/REF 31 - STRESS URBANO .jpg" alt="STRESS URBANO" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_31/index.html"><img src="../assets/img/REF 31 - STRESS URBANO .jpg" alt="STRESS URBANO" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">STRESS URBANO</h2>
@@ -1036,7 +1052,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_32/index.html"><img src="../assets/img/REF 32-STREET DANCE 2.jpg" alt="STREET DANCE 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_32/index.html"><img src="../assets/img/REF 32-STREET DANCE 2.jpg" alt="STREET DANCE 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">STREET DANCE 2</h2>
@@ -1047,7 +1063,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_33/index.html"><img src="../assets/img/REF 33 - SEM GÁS.jpg" alt="SEM GÁS" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_33/index.html"><img src="../assets/img/REF 33 - SEM GÁS.jpg" alt="SEM GÁS" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">SEM GÁS</h2>
@@ -1058,7 +1074,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_34/index.html"><img src="../assets/img/REF 34 - MERGULHO 1.jpg" alt="MERGULHO 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_34/index.html"><img src="../assets/img/REF 34 - MERGULHO 1.jpg" alt="MERGULHO 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 1</h2>
@@ -1069,7 +1085,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_35/index.html"><img src="../assets/img/REF 35-MERGULHO 2.jpg" alt="MERGULHO 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_35/index.html"><img src="../assets/img/REF 35-MERGULHO 2.jpg" alt="MERGULHO 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 2</h2>
@@ -1080,7 +1096,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_36/index.html"><img src="../assets/img/REF 36  MERGULHO 3.jpg" alt="MERGULHO 3" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_36/index.html"><img src="../assets/img/REF 36  MERGULHO 3.jpg" alt="MERGULHO 3" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 3</h2>
@@ -1091,7 +1107,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_37/index.html"><img src="../assets/img/REF 37  MERGULHO 4 .jpg" alt="MERGULHO 4" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_37/index.html"><img src="../assets/img/REF 37  MERGULHO 4 .jpg" alt="MERGULHO 4" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 4</h2>
@@ -1102,7 +1118,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_38/index.html"><img src="../assets/img/REF 38 - MERGULHO 5.jpg" alt="MERGULHO 5" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_38/index.html"><img src="../assets/img/REF 38 - MERGULHO 5.jpg" alt="MERGULHO 5" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 5</h2>
@@ -1113,7 +1129,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_39/index.html"><img src="../assets/img/REF 39 - MERGULHO 6.jpeg" alt="MERGULHO 6" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_39/index.html"><img src="../assets/img/REF 39 - MERGULHO 6.jpeg" alt="MERGULHO 6" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 6</h2>
@@ -1124,7 +1140,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_40/index.html"><img src="../assets/img/REF 40 - MERGULHO 7.jpg" alt="MERGULHO 7" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_40/index.html"><img src="../assets/img/REF 40 - MERGULHO 7.jpg" alt="MERGULHO 7" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MERGULHO 7</h2>
@@ -1143,7 +1159,7 @@
             <div class="obras-container">
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_41/index.html"><img src="../assets/img/REF 41 - BIKE 1.jpg" alt="BIKE 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_41/index.html"><img src="../assets/img/REF 41 - BIKE 1.jpg" alt="BIKE 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">BIKE 1</h2>
@@ -1154,7 +1170,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_42/index.html"><img src="../assets/img/REF 42 - CAPOEIRISTA 1.jpg" alt="CAPOEIRA 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_42/index.html"><img src="../assets/img/REF 42 - CAPOEIRISTA 1.jpg" alt="CAPOEIRA 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CAPOEIRA 1</h2>
@@ -1165,7 +1181,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_43/index.html"><img src="../assets/img/REF 43 - CAPOEIRISTA 2.jpg" alt="CAPOEIRA 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_43/index.html"><img src="../assets/img/REF 43 - CAPOEIRISTA 2.jpg" alt="CAPOEIRA 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CAPOEIRA 2</h2>
@@ -1176,7 +1192,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_44/index.html"><img src="../assets/img/REF 44 - DANÇA 1.jpg" alt="DANÇA 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_44/index.html"><img src="../assets/img/REF 44 - DANÇA 1.jpg" alt="DANÇA 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">DANÇA 1</h2>
@@ -1187,7 +1203,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_45/index.html"><img src="../assets/img/REF 45 - DANÇA 2 .jpg" alt="DANÇA 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_45/index.html"><img src="../assets/img/REF 45 - DANÇA 2 .jpg" alt="DANÇA 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">DANÇA 2</h2>
@@ -1198,7 +1214,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_46/index.html"><img src="../assets/img/REF 46 - DANÇA 3.jpg" alt="DANÇA 3" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_46/index.html"><img src="../assets/img/REF 46 - DANÇA 3.jpg" alt="DANÇA 3" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">DANÇA 3</h2>
@@ -1209,7 +1225,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_47/index.html"><img src="../assets/img/REF 47 MÚSICO 1.jpg" alt="MÚSICO 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_47/index.html"><img src="../assets/img/REF 47 MÚSICO 1.jpg" alt="MÚSICO 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MÚSICO 1</h2>
@@ -1220,7 +1236,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_48/index.html"><img src="../assets/img/REF 48 - MÚSICO 2.jpg" alt="MÚSICO 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_48/index.html"><img src="../assets/img/REF 48 - MÚSICO 2.jpg" alt="MÚSICO 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">MÚSICO 2</h2>
@@ -1231,7 +1247,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_49/index.html"><img src="../assets/img/REF 49 -CADEIRAS 1.2.3.4.jpg" alt="4 CADEIRAS" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_49/index.html"><img src="../assets/img/REF 49 -CADEIRAS 1.2.3.4.jpg" alt="4 CADEIRAS" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">4 CADEIRAS</h2>
@@ -1250,7 +1266,7 @@
             <div class="obras-container">
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_50/index.html"><img src="../assets/img/REF 50 - CAMISA KOMBI 1.jpg" alt="KOMBI 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_50/index.html"><img src="../assets/img/REF 50 - CAMISA KOMBI 1.jpg" alt="KOMBI 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">KOMBI 1</h2>
@@ -1261,7 +1277,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_51/index.html"><img src="../assets/img/REF 51 - CAMISA KOMBI 2.jpg" alt="KOMBI 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_51/index.html"><img src="../assets/img/REF 51 - CAMISA KOMBI 2.jpg" alt="KOMBI 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">KOMBI 2</h2>
@@ -1272,7 +1288,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_52/index.html"><img src="../assets/img/REF 52 - CAMISA P&J 1.jpg" alt="PORTAS JANELAS 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_52/index.html"><img src="../assets/img/REF 52 - CAMISA P&J 1.jpg" alt="PORTAS JANELAS 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS JANELAS 1</h2>
@@ -1283,7 +1299,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_53/index.html"><img src="../assets/img/REF 53 - CAMISA GRADIL.jpg" alt="GRADIL SÉC. XIX" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_53/index.html"><img src="../assets/img/REF 53 - CAMISA GRADIL.jpg" alt="GRADIL SÉC. XIX" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">GRADIL SÉC. XIX</h2>
@@ -1294,7 +1310,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_54/index.html"><img src="../assets/img/REF 54 - PENAS TROPICAIS.jpg" alt="PENAS TROPICAIS" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_54/index.html"><img src="../assets/img/REF 54 - PENAS TROPICAIS.jpg" alt="PENAS TROPICAIS" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PENAS TROPICAIS</h2>
@@ -1305,7 +1321,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_55/index.html"><img src="../assets/img/REF 55-CAMISA JEEP.jpg" alt="JEEP" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_55/index.html"><img src="../assets/img/REF 55-CAMISA JEEP.jpg" alt="JEEP" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">JEEP</h2>
@@ -1316,7 +1332,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_56/index.html"><img src="../assets/img/REF 56 - CAMISA PORTAS E JANELAS 2.jpg" alt="PORTAS JANELAS 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_56/index.html"><img src="../assets/img/REF 56 - CAMISA PORTAS E JANELAS 2.jpg" alt="PORTAS JANELAS 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">PORTAS JANELAS 2</h2>
@@ -1327,7 +1343,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_57/index.html"><img src="../assets/img/REF 57-CAMISA BIKE 1.jpg" alt="BIKE 1" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_57/index.html"><img src="../assets/img/REF 57-CAMISA BIKE 1.jpg" alt="BIKE 1" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">BIKE 1</h2>
@@ -1338,7 +1354,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_58/index.html"><img src="../assets/img/REF 58 CAMISA BIKE 2.jpg" alt="BIKE 2" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_58/index.html"><img src="../assets/img/REF 58 CAMISA BIKE 2.jpg" alt="BIKE 2" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">BIKE 2</h2>
@@ -1349,7 +1365,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_59/index.html"><img src="../assets/img/REF 59-CAMISA LAMBRETTA.jpg" alt="LAMBRETTA" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_59/index.html"><img src="../assets/img/REF 59-CAMISA LAMBRETTA.jpg" alt="LAMBRETTA" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">LAMBRETTA</h2>
@@ -1360,7 +1376,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_60/index.html"><img src="../assets/img/REF 60 - CAMISA CHEVROLET.jpg" alt="CHEVROLET" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_60/index.html"><img src="../assets/img/REF 60 - CAMISA CHEVROLET.jpg" alt="CHEVROLET" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">CHEVROLET</h2>
@@ -1371,7 +1387,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_61/index.html"><img src="../assets/img/REF 61 - CAMISA KOMBI 3.jpg" alt="KOMBI 3" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_61/index.html"><img src="../assets/img/REF 61 - CAMISA KOMBI 3.jpg" alt="KOMBI 3" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">KOMBI 3</h2>
@@ -1382,7 +1398,7 @@
             <div class="obra-divider"></div>
             <div class="obra-item">
                 <div class="obra-image-container">
-                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_62/index.html"><img src="../assets/img/REF 62 - CAMISA GORDINI.jpg" alt="GORDINI" loading="lazy"></a>
+                    <a href="https://datacanuto.github.io/galeria-digital-artes/links_obras/item_62/index.html"><img src="../assets/img/REF 62 - CAMISA GORDINI.jpg" alt="GORDINI" loading="lazy" decoding="async"></a>
                 </div>
                 <div class="obra-details">
                     <h2 class="obra-title">GORDINI</h2>
