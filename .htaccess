@@ -1,0 +1,72 @@
+# ============================================
+# COMPRESSÃO GZIP - Reduz tamanho em 65-70%
+# ============================================
+<IfModule mod_deflate.c>
+    # Comprime arquivos HTML, CSS, JavaScript, XML, JSON
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json application/xml+rss
+
+    # Comprime imagens SVG
+    AddOutputFilterByType DEFLATE image/svg+xml
+
+    # Adiciona header informando que foi comprimido
+    Header append Vary Accept-Encoding
+</IfModule>
+
+# ============================================
+# CACHE DE NAVEGADOR - Reduz requisições repetidas
+# ============================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    # Imagens - 30 dias
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/gif "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+    ExpiresByType image/webp "access plus 30 days"
+    ExpiresByType image/svg+xml "access plus 30 days"
+    ExpiresByType image/x-icon "access plus 30 days"
+
+    # CSS e JavaScript - 7 dias
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType text/javascript "access plus 7 days"
+
+    # HTML - 1 dia (pode ser atualizado)
+    ExpiresByType text/html "access plus 1 days"
+</IfModule>
+
+# ============================================
+# HEADERS DE SEGURANÇA E PERFORMANCE
+# ============================================
+<IfModule mod_headers.c>
+    # Habilita compressão no navegador
+    Header set Content-Encoding "gzip"
+
+    # X-Content-Type-Options previne MIME-type sniffing
+    Header set X-Content-Type-Options "nosniff"
+
+    # Permite caching em navegadores
+    Header set Cache-Control "public, max-age=2592000, must-revalidate"
+</IfModule>
+
+# ============================================
+# REESCRITAS DE URL (se usar GitHub Pages, comentar)
+# ============================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Remove .html da URL (opcional)
+    # RewriteCond %{REQUEST_FILENAME} !-f
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+    # Redireciona HTTP para HTTPS
+    # RewriteCond %{HTTPS} off
+    # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# ============================================
+# AUMENTO DE LIMITE DE UPLOAD (se necessário)
+# ============================================
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
