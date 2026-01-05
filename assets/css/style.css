@@ -1,10 +1,11 @@
 ﻿/* Preço da Obra */
 
 .preco-obra {
-    font-size: 1.2em;
-    color: #5a5858;
-    margin: 10px 0 20px 0;
-    font-weight: bold;
+    font-size: 1rem;
+    font-style: italic;
+    color: #999999;
+    margin: 15px 0 10px 0;
+    font-weight: normal;
 }
 
 
