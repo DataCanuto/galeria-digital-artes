@@ -94,89 +94,104 @@
             transform: translateY(-2px);
         }
 
-        /* Dropdown de temas */
-        .theme-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-btn {
-            display: inline-flex;
+        /* Botão Monitor - Verde WhatsApp */
+        .monitor-btn {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            background: #25D366;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
             flex-direction: column;
             align-items: center;
-            padding: 0.75rem 1.5rem;
-            background: rgba(229, 57, 53, 0.1);
-            border: 2px solid rgba(229, 57, 53, 0.3);
-            border-radius: 25px;
-            color: #e53935;
-            text-decoration: none;
+            justify-content: center;
+            cursor: pointer;
             transition: all 0.3s ease;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            flex-shrink: 0;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
         }
 
-        .dropdown-btn:hover {
-            background: rgba(229, 57, 53, 0.2);
-            border-color: rgba(229, 57, 53, 0.5);
-            transform: translateY(-2px);
+        .monitor-btn:hover {
+            background: #1ECB63;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(37, 211, 102, 0.5);
         }
 
-        .dropdown-content {
+        .monitor-btn:active {
+            transform: scale(0.95);
+        }
+
+        .monitor-icon {
+            font-size: 1.2rem;
+        }
+
+        .monitor-text {
             display: none;
-            position: absolute;
-            background: rgba(26, 26, 26, 0.98);
-            min-width: 250px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-            padding: 0.5rem 0;
-            z-index: 1001;
-            border: 1px solid rgba(229, 57, 53, 0.3);
-            border-radius: 8px;
-            top: 100%;
+        }
+
+        /* Modal para zoom de imagem */
+        .image-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
             left: 0;
-            margin-top: 0.5rem;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            animation: fadeIn 0.3s ease;
         }
 
-        .dropdown-content a {
-            color: #ffffff;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            display: block;
-            transition: all 0.2s ease;
-            text-transform: uppercase;
-            font-size: 0.85rem;
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .image-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: bold;
             cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            z-index: 2001;
         }
 
-        .dropdown-content a:hover {
-            background: rgba(229, 57, 53, 0.2);
-            padding-left: 2rem;
-            color: #e53935;
+        .close-modal:hover {
+            background: rgba(0, 0, 0, 0.8);
+            color: #25D366;
         }
 
-        .dropdown-content a:first-child {
-            border-radius: 8px 8px 0 0;
-        }
-
-        .dropdown-content a:last-child {
-            border-radius: 0 0 8px 8px;
-        }
-
-        .theme-dropdown.active .dropdown-content {
-            display: block;
-        }
-
-        .dropdown-btn::after {
-            content: '▼';
-            font-size: 0.7rem;
-            margin-top: 0.3rem;
-            transition: transform 0.3s ease;
-        }
-
-        .theme-dropdown.active .dropdown-btn::after {
-            transform: rotate(180deg);
+        /* Cursor indicando que a imagem é clicável */
+        .obra-image-container img {
+            cursor: zoom-in;
         }
 
         .category-btn-name {
@@ -519,19 +534,6 @@
                 <span class="category-btn-name">VOLTAR AO CATÁLOGO</span>
                 <span class="category-btn-count">Coleção Completa</span>
             </a>
-            
-            <!-- Dropdown de Temas -->
-            <div class="theme-dropdown" id="themeDropdown">
-                <button class="dropdown-btn">IR PARA TEMA</button>
-                <div class="dropdown-content" id="dropdownContent">
-                    <a onclick="scrollToTheme('Bicicletas')">Bicicletas</a>
-                    <a onclick="scrollToTheme('Carros')">Carros</a>
-                    <a onclick="scrollToTheme('Indigena')">Indígena</a>
-                    <a onclick="scrollToTheme('Lambreta')">Lambreta</a>
-                    <a onclick="scrollToTheme('Natureza')">Natureza</a>
-                    <a onclick="scrollToTheme('Portas e Janelas')">Portas e Janelas</a>
-                </div>
-            </div>
         </nav>
     </header>
 
@@ -1135,41 +1137,61 @@
         </section>
     </main>
 
+    <!-- Modal para Zoom de Imagem -->
+    <div id="imageModal" class="image-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeImageModal()">×</button>
+            <img id="modalImg" class="modal-img" alt="Zoom da imagem">
+        </div>
+    </div>
+
     <script>
-        // Função para toggle do dropdown de temas
-        const themeDropdown = document.getElementById('themeDropdown');
-        const dropdownBtn = document.querySelector('.dropdown-btn');
-        
-        dropdownBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            themeDropdown.classList.toggle('active');
-        });
-        
-        // Fechar dropdown ao clicar fora
-        document.addEventListener('click', function(e) {
-            if (!themeDropdown.contains(e.target)) {
-                themeDropdown.classList.remove('active');
-            }
-        });
-        
-        // Função para navegar até um tema
-        function scrollToTheme(tema) {
-            // Encontrar a seção do tema
-            const allSections = document.querySelectorAll('.tema-subheader');
-            let targetSection = null;
-            
-            for (let section of allSections) {
-                if (section.textContent.includes(tema)) {
-                    targetSection = section.closest('.category-section');
-                    break;
-                }
-            }
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                themeDropdown.classList.remove('active');
-            }
+        // Modal para zoom de imagem
+        function openImageModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = imgSrc;
+            modal.classList.add('active');
         }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        // Fechar modal ao clicar fora da imagem
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('imageModal');
+            
+            // Clique na imagem abre o modal
+            const images = document.querySelectorAll('.obra-image-container img');
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    openImageModal(this.src);
+                });
+            });
+            
+            // Fechar modal ao clicar fora da imagem
+            if (modal) {
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) {
+                        closeImageModal();
+                    }
+                });
+            }
+            
+            // Otimização de carregamento de imagens
+            const allImages = document.querySelectorAll('img');
+            allImages.forEach(img => {
+                if (!img.complete) {
+                    img.addEventListener('load', function() {
+                        img.style.opacity = '1';
+                    });
+                } else {
+                    img.style.opacity = '1';
+                }
+            });
+        });
         
         // Função para enviar mensagem ao monitor via WhatsApp
         function enviarMensagem(tema, tela) {
@@ -1180,22 +1202,6 @@
             const whatsappUrl = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
             window.open(whatsappUrl, '_blank');
         }
-
-        // Otimização de carregamento de imagens
-        document.addEventListener('DOMContentLoaded', function() {
-            const images = document.querySelectorAll('img');
-            
-            images.forEach(img => {
-                // Força carregamento imediato
-                if (!img.complete) {
-                    img.addEventListener('load', function() {
-                        img.style.opacity = '1';
-                    });
-                } else {
-                    img.style.opacity = '1';
-                }
-            });
-        });
     </script>
 </body>
 </html>
