@@ -17,7 +17,7 @@
         <h1 class="artwork-title ">RURAL AZUL</h1>
         <div class="divider "></div>
         <div class="details-section ">
-            <p><strong>ACRÍLICA SOBRE TECIDO, 2025</strong></p>
+            <p><strong>ACRÍLICA SOBRE TECIDO, nan, 2025</strong></p>
             <div class="divider "></div>
             <p class="preco-obra">R$ 150,00</p>
             <p class="parcelamento-info">2 VEZES SEM JUROS</p>
@@ -28,7 +28,67 @@
             </a>
         </div>
         <div style="height: 24px;"></div>
-        <a href="https://wa.me/5571999588950" class="whatsapp-button" target="_blank" rel="noopener noreferrer">FALE COM O MONITOR</a>
+        <a href="https://wa.me/5571999588950" class="whatsapp-button" id="whatsapp-button" target="_blank" rel="noopener noreferrer">FALE COM O MONITOR</a>
+    </div>
+
+    <script>
+        // Função para registrar interesse pela obra
+        function registrarInteresse(item_id, titulo) {
+            try {
+                // Preparar dados do interesse
+                const interesse = {
+                    item: item_id,
+                    titulo: titulo,
+                    timestamp: new Date().toISOString(),
+                    url: window.location.href
+                };
+                
+                // Salvar em localStorage
+                let interesses = JSON.parse(localStorage.getItem('interesses_obras') || '[]');
+                interesses.push(interesse);
+                localStorage.setItem('interesses_obras', JSON.stringify(interesses));
+                
+                // Opcional: Enviar para um servidor (comentado)
+                // fetch('/api/registrar-interesse', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(interesse)
+                // }).catch(err => console.log('Interesse registrado localmente'));
+                
+                console.log('Interesse registrado:', interesse);
+            } catch (error) {
+                console.error('Erro ao registrar interesse:', error);
+            }
+        }
+
+        // Obter ID da obra do caminho da URL
+        function obterItemId() {
+            const caminho = window.location.pathname;
+            const match = caminho.match(/item_(\d+)/);
+            return match ? match[1] : null;
+        }
+
+        // Event listener para o botão do WhatsApp
+        document.getElementById('whatsapp-button').addEventListener('click', function(e) {
+            const item_id = obterItemId();
+            const titulo = document.querySelector('.artwork-title').innerText || 'obra';
+            
+            if (item_id) {
+                // Registrar interesse antes de abrir o WhatsApp
+                registrarInteresse(item_id, titulo);
+                
+                // Preparar mensagem do WhatsApp com informação da obra
+                const mensagem = `Olá! Tenho interesse na obra: "${titulo}" (Item ${item_id})`;
+                const whatsappUrl = this.href;
+                const novaUrl = whatsappUrl.includes('?text=') 
+                    ? whatsappUrl + encodeURIComponent(`\n${mensagem}`)
+                    : whatsappUrl + '?text=' + encodeURIComponent(mensagem);
+                
+                // Atualizar href dinamicamente
+                this.href = novaUrl;
+            }
+        });
+    </script>
 </body>
 
 </html>
