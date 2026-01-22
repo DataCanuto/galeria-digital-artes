@@ -181,24 +181,23 @@
         }
         
         .card.vendido {
-            opacity: 0.6;
+            opacity: 0.65;
+            border: 3px solid #ff6b6b;
         }
         
-        .card.vendido::after {
+        .card.vendido .image-container::after {
             content: 'VENDIDO';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5em;
-            font-weight: bold;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 107, 107, 0.95);
             color: white;
-            z-index: 10;
+            padding: 15px 25px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            z-index: 5;
         }
         
         .image-container {
@@ -210,6 +209,7 @@
             justify-content: center;
             overflow: hidden;
             position: relative;
+            pointer-events: none;
         }
         
         .image-container img {
@@ -293,10 +293,22 @@
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s;
+            pointer-events: auto;
+            z-index: 10;
+            position: relative;
         }
         
         .btn-vendido:hover {
             background: #e63946;
+            transform: scale(1.05);
+        }
+        
+        .card.vendido .btn-vendido {
+            background: #4caf50;
+        }
+        
+        .card.vendido .btn-vendido:hover {
+            background: #45a049;
         }
         
         .card.vendido .btn-vendido {
@@ -403,6 +415,19 @@
                     <label for="filter-referencia">Referência</label>
                     <input type="text" id="filter-referencia" placeholder="Buscar...">
                 </div>
+                <div class="filter-group">
+                    <label for="filter-ordenacao">Ordenar por</label>
+                    <select id="filter-ordenacao">
+                        <option value="">Ordem Original</option>
+                        <option value="item-asc">Item (crescente)</option>
+                        <option value="item-desc">Item (decrescente)</option>
+                        <option value="tema-asc">Tema (A-Z)</option>
+                        <option value="tema-desc">Tema (Z-A)</option>
+                        <option value="tamanho-asc">Tamanho</option>
+                        <option value="cor-asc">Cor (A-Z)</option>
+                        <option value="cor-desc">Cor (Z-A)</option>
+                    </select>
+                </div>
             </div>
             <div class="filter-buttons">
                 <button class="btn-filter" onclick="aplicarFiltros()">Aplicar Filtros</button>
@@ -427,7 +452,7 @@
 12,branca,Bikes,3,EXG,"MercedesDamenrad, Stealth, StealthFatBike",2025,BolsaVermelha,IMG_2665,Indigena,12,0,12
 14,preta,Bikes,4,GG(F),várias bikes,,BolsaVermelha,IMG_2667,Natureza,19,0,19
 15,branca,Bikes,5,G,várias bikes,2024,BolsaVermelha,IMG_2668,Portas e Janelas,13,2,11
-16,branca,Bikes,6,M,grafite sobre rodas,2025,VENDIDA,IMG_2669,Bikes,17,1,16
+16,branca,Bikes,6,M,grafite sobre rodas,2025,,IMG_2669,Bikes,17,1,16
 17,branca,Bikes,7,XG,varias,2025,BolsaVermelha,IMG_2670,Total,95,12,83
 28,branca,Bikes,8,,HarleyDavison Panamerica,,MalaAzul,IMG_2681,,,,
 34,preta,Bikes,9,G(F),HomemCelular,,MalaAzul,IMG_2687,,,,
@@ -438,23 +463,23 @@
 71,branca,Bikes,11,G,Grafiteiro/Venezuela,,Mostruário,IMG_2724,,,,
 72,branca,Bikes,13,M,BikeAmarela/Árvore,2026,,IMG_2725,,,,
 73,branca,Bikes,14,M,BikeVermelha/PortasEJanelas,2026,,IMG_2726,,,,
-6,branca,Carros,1,G,Volkwagem Sedan 1935-2003,2025,VENDIDA,IMG_2659,,,,
-8,branca,Carros,2,M,Rural Azul,2025,VENDIDA,IMG_2661,,,,
+6,branca,Carros,1,G,Volkwagem Sedan 1935-2003,2025,,IMG_2659,,,,
+8,branca,Carros,2,M,Rural Azul,2025,,IMG_2661,,,,
 9,branca,Carros,3,M,Renault Gordini 1956 - 1967,2025,VENDIDA,IMG_2662,,,,
-11,branca,Carros,4,?,Volkwagem Sedan 1935-2003,,VENDIDA,IMG_2664,,,,
+11,branca,Carros,4,?,Volkwagem Sedan 1935-2003,,,IMG_2664,,,,
 13,branca,Carros,5,P,FuscaFrente,2025,BolsaVermelha,IMG_2666,,,,
-18,branca,Carros,6,XG,Chevrolet 3.100-1951,2025,VENDIDA,IMG_2671,,,,
+18,branca,Carros,6,XG,Chevrolet 3.100-1951,2025,,IMG_2671,,,,
 19,branca,Carros,7,GG,FuscaFrente,2025,BolsaVermelha,IMG_2672,,,,
-20,creme,Carros,8,G,Karmann Ghia 1955-1975,2025,VENDIDA,IMG_2673,,,,
+20,creme,Carros,8,G,Karmann Ghia 1955-1975,2025,,IMG_2673,,,,
 23,branca,Carros,9,M,Rural Azul,2026,BolsaVermelha,IMG_2676,,,,
 30,creme,Carros,10,M,KombiNationSFAhrzeug 1950-2013,,MalaAzul,IMG_2683,,,,
 59,branca,Carros,20,M,Kombi Natureza,,,IMG_2712,,,,
 69,branca,Carros,21,GG(F),Rural Azul,,,IMG_2722,,,,
-70,branca,Carros,19,G,KombiVermelhaAmarela,,VENDIDA,IMG_2723,,,,
+70,branca,Carros,19,G,KombiVermelhaAmarela,,,IMG_2723,,,,
 74,branca,Carros,15,G,Jeep,,,IMG_2727,,,,
 76,branca,Carros,16,M,FuscaVermelho,2026,,IMG_2729,,,,
 77,branca,Carros,17,GG(F),Carro/Bike/Corredor,2026,,IMG_2730,,,,
-78,preta,Carros,18,G,KombiBranca,,VENDIDA,IMG_2731,,,,
+78,preta,Carros,18,G,KombiBranca,,,IMG_2731,,,,
 27,branca,Indigena,1,M(F),Indigena1,2025,MalaAzul,IMG_2680,,,,
 29,branca,Indigena,2,G,Indigena2,,MalaAzul,IMG_2682,,,,
 31,preta,Indigena,3,G(F),Indigena3,,MalaAzul,IMG_2684,,,,
@@ -488,7 +513,7 @@
 75,branca,Natureza,12,GG(F),FloresVermelhas,2026,,IMG_2728,,,,
 1,branca,Portas e Janelas,1,M,Portas e Janelas1,,BolsaVermelha,IMG_2654,,,,
 2,mostarda,Portas e Janelas,2,M,Portas e Janelas2,,VENDIDA,IMG_2655,,,,
-3,azul,Portas e Janelas,3,G,Portas e Janelas3,,VENDIDA,IMG_2656,,,,
+3,azul,Portas e Janelas,3,G,Portas e Janelas3,,,IMG_2656,,,,
 4,branca,Portas e Janelas,4,M,Portas e Janelas4,,BolsaVermelha,IMG_2657,,,,
 22,branca,Portas e Janelas,5,GG,"PortasEJanelas, bicicleta",2026,BolsaVermelha,IMG_2675,,,,
 24,branca,Portas e Janelas,6,G,Portas e Janelas6,2026,BolsaVermelha,IMG_2677,,,,
@@ -609,6 +634,7 @@
             const tamanho = document.getElementById('filter-tamanho').value;
             const status = document.getElementById('filter-status').value;
             const referencia = document.getElementById('filter-referencia').value.toLowerCase();
+            const ordenacao = document.getElementById('filter-ordenacao').value;
 
             dadosFiltrados = dadosCamisas.filter(camisa => {
                 const matchTema = !tema || camisa.tema === tema;
@@ -616,11 +642,40 @@
                 const matchTamanho = !tamanho || camisa.tamanho === tamanho;
                 const matchReferencia = !referencia || camisa.referência.toString().toLowerCase().includes(referencia);
                 const matchStatus = !status ||
-                    (status === 'vendido' && (camisa['Vendido'] || camisa.vendidoMarcado)) ||
-                    (status === 'disponivel' && !camisa['Vendido'] && !camisa.vendidoMarcado);
+                    (status === 'vendido' && (camisa['Estoque'] === 'VENDIDA' || camisa.vendidoMarcado)) ||
+                    (status === 'disponivel' && camisa['Estoque'] !== 'VENDIDA' && !camisa.vendidoMarcado);
 
                 return matchTema && matchCor && matchTamanho && matchReferencia && matchStatus;
             });
+
+            // Aplicar ordenação
+            if (ordenacao === 'item-asc') {
+                dadosFiltrados.sort((a, b) => parseInt(a.item) - parseInt(b.item));
+            } else if (ordenacao === 'item-desc') {
+                dadosFiltrados.sort((a, b) => parseInt(b.item) - parseInt(a.item));
+            } else if (ordenacao === 'tema-asc') {
+                dadosFiltrados.sort((a, b) => a.tema.localeCompare(b.tema, 'pt-BR'));
+            } else if (ordenacao === 'tema-desc') {
+                dadosFiltrados.sort((a, b) => b.tema.localeCompare(a.tema, 'pt-BR'));
+            } else if (ordenacao === 'tamanho-asc') {
+                const ordemTamanho = {
+                    'P': 0,
+                    'M': 1,
+                    'G': 2,
+                    'XG': 3,
+                    'EXG': 4,
+                    'GG': 5,
+                    'GG(F)': 6,
+                    'XG': 7,
+                    'EXG': 8,
+                    '?': 999
+                };
+                dadosFiltrados.sort((a, b) => (ordemTamanho[a.tamanho] || 999) - (ordemTamanho[b.tamanho] || 999));
+            } else if (ordenacao === 'cor-asc') {
+                dadosFiltrados.sort((a, b) => a.cor.localeCompare(b.cor, 'pt-BR'));
+            } else if (ordenacao === 'cor-desc') {
+                dadosFiltrados.sort((a, b) => b.cor.localeCompare(a.cor, 'pt-BR'));
+            }
 
             renderizarGaleria();
             atualizarEstatisticas();
@@ -632,6 +687,7 @@
             document.getElementById('filter-tamanho').value = '';
             document.getElementById('filter-status').value = '';
             document.getElementById('filter-referencia').value = '';
+            document.getElementById('filter-ordenacao').value = '';
 
             dadosFiltrados = [...dadosCamisas];
             renderizarGaleria();
@@ -651,7 +707,7 @@
             }
 
             dadosFiltrados.forEach(camisa => {
-                const isVendido = camisa['Vendido'] || camisa.vendidoMarcado;
+                const isVendido = camisa['Estoque'] === 'VENDIDA' || camisa.vendidoMarcado;
                 const card = document.createElement('div');
                 card.className = `card ${isVendido ? 'vendido' : ''}`;
                 card.id = `card-${camisa.item}`;
@@ -661,8 +717,8 @@
 
                 card.innerHTML = `
                     <div class="image-container">
-                        <img src="${camisa['REFERÊNCIA']}.JPEG" alt="${camisa['Titulo/ Descrição']}" 
-                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22280%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImagem não encontrada%3C/text%3E%3C/svg%3E'">
+                        <img src="${camisa['REFERÊNCIA']}.jpeg" alt="${camisa['Titulo/ Descrição']}" 
+                             onerror="this.src='${camisa['REFERÊNCIA']}.JPEG'; this.onerror = function() { this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22280%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImagem não encontrada%3C/text%3E%3C/svg%3E'; }">
                     </div>
                     <div class="info">
                         <div class="item-id">Item #${camisa.item}</div>
@@ -713,7 +769,7 @@
 
         function atualizarEstatisticas() {
             const total = dadosCamisas.length;
-            const vendidos = dadosCamisas.filter(c => c['Vendido'] || c.vendidoMarcado).length;
+            const vendidos = dadosCamisas.filter(c => c['Estoque'] === 'VENDIDA' || c.vendidoMarcado).length;
             const disponiveis = total - vendidos;
 
             document.getElementById('total-count').textContent = total;
@@ -725,7 +781,7 @@
             let csv = 'Item,Cor,Tema,Referência,Tamanho,Descrição,Status\n';
 
             dadosFiltrados.forEach(camisa => {
-                const status = (camisa['Vendido'] || camisa.vendidoMarcado) ? 'Vendido' : 'Disponível';
+                const status = (camisa['Estoque'] === 'VENDIDA' || camisa.vendidoMarcado) ? 'Vendido' : 'Disponível';
                 csv += `"${camisa.item}","${camisa.cor}","${camisa.tema}","${camisa.referência}","${camisa.tamanho}","${camisa['Titulo/ Descrição']}","${status}"\n`;
             });
 
