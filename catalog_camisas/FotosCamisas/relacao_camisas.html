@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Camisas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .filters-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .filters-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-group select,
+        .filter-group input {
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+        
+        .btn-filter {
+            background: #667eea;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-filter:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .btn-reset {
+            background: #e0e0e0;
+            color: #333;
+            flex: 1;
+        }
+        
+        .btn-reset:hover {
+            background: #d0d0d0;
+        }
+        
+        .btn-export {
+            background: #4caf50;
+            color: white;
+            flex: 1;
+        }
+        
+        .btn-export:hover {
+            background: #45a049;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card.vendido {
+            opacity: 0.6;
+        }
+        
+        .card.vendido::after {
+            content: 'VENDIDO';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: white;
+            z-index: 10;
+        }
+        
+        .image-container {
+            width: 100%;
+            height: 280px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .info {
+            padding: 20px;
+        }
+        
+        .item-id {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .descricao {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            line-height: 1.4;
+        }
+        
+        .atributos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .atributo {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .atributo-label {
+            color: #999;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            margin-bottom: 3px;
+        }
+        
+        .atributo-valor {
+            color: #333;
+            font-weight: 600;
+        }
+        
+        .cor-preview {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-vendido {
+            flex: 1;
+            padding: 10px;
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-vendido:hover {
+            background: #e63946;
+        }
+        
+        .card.vendido .btn-vendido {
+            background: #4caf50;
+        }
+        
+        .card.vendido .btn-vendido:hover {
+            background: #45a049;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+            font-size: 1.2em;
+        }
+        
+        .info-status {
+            background: #f5f5f5;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 15px;
+            }
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .stats {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: white;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>👕 Catálogo de Camisas</h1>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total de Peças:</span>
+                    <span class="stat-value" id="total-count">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Disponível:</span>
+                    <span class="stat-value" id="available-count" style="color: #4caf50;">-</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Vendido:</span>
+                    <span class="stat-value" id="vendido-count" style="color: #ff6b6b;">-</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="filters-section">
+            <div class="filters-title">🔍 Filtrar Peças</div>
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label for="filter-tema">Tema</label>
+                    <select id="filter-tema">
+                        <option value="">Todos os Temas</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-cor">Cor</label>
+                    <select id="filter-cor">
+                        <option value="">Todas as Cores</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-tamanho">Tamanho</label>
+                    <select id="filter-tamanho">
+                        <option value="">Todos os Tamanhos</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-status">Status</label>
+                    <select id="filter-status">
+                        <option value="">Todos</option>
+                        <option value="disponivel">Disponível</option>
+                        <option value="vendido">Vendido</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filter-referencia">Referência</label>
+                    <input type="text" id="filter-referencia" placeholder="Buscar...">
+                </div>
+            </div>
+            <div class="filter-buttons">
+                <button class="btn-filter" onclick="aplicarFiltros()">Aplicar Filtros</button>
+                <button class="btn-reset" onclick="limparFiltros()">Limpar Tudo</button>
+                <button class="btn-export" onclick="exportarCSV()">📥 Exportar CSV</button>
+            </div>
+        </div>
+
+        <div id="gallery" class="gallery"></div>
+        <div id="empty-message" class="empty-state"></div>
+    </div>
+
+    <script>
+        let dadosCamisas = [];
+        let dadosFiltrados = [];
+
+        // Dados do CSV convertidos para JSON
+        const csvData = `item,cor,tema,referência,tamanho,Titulo/ Descrição,Ano,Estoque,REFERÊNCIA,Temas,Totais,Vendido,Estoque
+5,creme,Bikes,11,G,Lambreta,,BolsaVermelha,IMG_2658,,,,
+7,branca,Bikes,1,G,Mercedes Damenrad,2025,BolsaVermelha,IMG_2660,Bikes,17,1,16
+10,branca,Bikes,2,M,"Ciclista, capacete verde",,BolsaVermelha,IMG_2663,Carros,17,8,9
+12,branca,Bikes,3,EXG,"MercedesDamenrad, Stealth, StealthFatBike",2025,BolsaVermelha,IMG_2665,Indigena,12,0,12
+14,preta,Bikes,4,GG(F),várias bikes,,BolsaVermelha,IMG_2667,Natureza,19,0,19
+15,branca,Bikes,5,G,várias bikes,2024,BolsaVermelha,IMG_2668,Portas e Janelas,13,2,11
+16,branca,Bikes,6,M,grafite sobre rodas,2025,VENDIDA,IMG_2669,Bikes,17,1,16
+17,branca,Bikes,7,XG,varias,2025,BolsaVermelha,IMG_2670,Total,95,12,83
+28,branca,Bikes,8,,HarleyDavison Panamerica,,MalaAzul,IMG_2681,,,,
+34,preta,Bikes,9,G(F),HomemCelular,,MalaAzul,IMG_2687,,,,
+43,preta,Bikes,10,M(F),Mercedes Damnrad Massarandupio,,MalaAzulFundo,IMG_2696,,,,
+57,azul,Bikes,15,G,HandsOffVenezuela,,,IMG_2710,,,,
+63,vinho,Bikes,16,GG,2 Bikes,,,IMG_2716,,,,
+68,verde,Bikes,17,G,bike celular,,,IMG_2721,,,,
+71,branca,Bikes,11,G,Grafiteiro/Venezuela,,Mostruário,IMG_2724,,,,
+72,branca,Bikes,13,M,BikeAmarela/Árvore,2026,,IMG_2725,,,,
+73,branca,Bikes,14,M,BikeVermelha/PortasEJanelas,2026,,IMG_2726,,,,
+6,branca,Carros,1,G,Volkwagem Sedan 1935-2003,2025,VENDIDA,IMG_2659,,,,
+8,branca,Carros,2,M,Rural Azul,2025,VENDIDA,IMG_2661,,,,
+9,branca,Carros,3,M,Renault Gordini 1956 - 1967,2025,VENDIDA,IMG_2662,,,,
+11,branca,Carros,4,?,Volkwagem Sedan 1935-2003,,VENDIDA,IMG_2664,,,,
+13,branca,Carros,5,P,FuscaFrente,2025,BolsaVermelha,IMG_2666,,,,
+18,branca,Carros,6,XG,Chevrolet 3.100-1951,2025,VENDIDA,IMG_2671,,,,
+19,branca,Carros,7,GG,FuscaFrente,2025,BolsaVermelha,IMG_2672,,,,
+20,creme,Carros,8,G,Karmann Ghia 1955-1975,2025,VENDIDA,IMG_2673,,,,
+23,branca,Carros,9,M,Rural Azul,2026,BolsaVermelha,IMG_2676,,,,
+30,creme,Carros,10,M,KombiNationSFAhrzeug 1950-2013,,MalaAzul,IMG_2683,,,,
+59,branca,Carros,20,M,Kombi Natureza,,,IMG_2712,,,,
+69,branca,Carros,21,GG(F),Rural Azul,,,IMG_2722,,,,
+70,branca,Carros,19,G,KombiVermelhaAmarela,,VENDIDA,IMG_2723,,,,
+74,branca,Carros,15,G,Jeep,,,IMG_2727,,,,
+76,branca,Carros,16,M,FuscaVermelho,2026,,IMG_2729,,,,
+77,branca,Carros,17,GG(F),Carro/Bike/Corredor,2026,,IMG_2730,,,,
+78,preta,Carros,18,G,KombiBranca,,VENDIDA,IMG_2731,,,,
+27,branca,Indigena,1,M(F),Indigena1,2025,MalaAzul,IMG_2680,,,,
+29,branca,Indigena,2,G,Indigena2,,MalaAzul,IMG_2682,,,,
+31,preta,Indigena,3,G(F),Indigena3,,MalaAzul,IMG_2684,,,,
+32,grafite,Indigena,4,M(F),Indigena4,,MalaAzul,IMG_2685,,,,
+37,azul,Indigena,5,M(F),Indigena5,,MalaAzulFundo,IMG_2690,,,,
+38,branca,Indigena,6,P(F),Indigena6,,MalaAzulFundo,IMG_2691,,,,
+39,branca,Indigena,7,P(F),Indigena7,2025,MalaAzulFundo,IMG_2692,,,,
+45,mostarda,Indigena,8,G(F),Indigena8,,MalaAzulFundo,IMG_2698,,,,
+46,grafite,Indigena,9,GG(F),Indigena9,,MalaAzulFundo,IMG_2699,,,,
+50,preta,Indigena,10,P(F),Indigena10,,MalaAzulFundo,IMG_2703,,,,
+51,grafite,Indigena,11,G(F),Indigena11,,MalaAzulFundo,IMG_2704,,,,
+52,grafite,Indigena,12,M(F),Indigena12,,MalaAzulFundo,IMG_2705,,,,
+21,branca,Natureza,1,,Folhas,,BolsaVermelha,IMG_2674,,,,
+33,preta,Natureza,2,GG(F),Frente(Massarandupio),,MalaAzul,IMG_2686,,,,
+35,preta,Natureza,3,G(F),Samambaia/ Massarandupio,,MalaAzul,IMG_2688,,,,
+36,creme,Natureza,4,GG,Flor,,MalaAzul,IMG_2689,,,,
+40,branca,Natureza,5,M,Protestante Flores,2021,MalaAzulFundo,IMG_2693,,,,
+41,preta,Natureza,6,M(F),Fibonacci,2024,MalaAzulFundo,IMG_2694,,,,
+42,preta,Natureza,7,G,Penas,2024,MalaAzulFundo,IMG_2695,,,,
+44,preta,Natureza,8,G(F),Flor,,MalaAzulFundo,IMG_2697,,,,
+47,preta,Natureza,9,G,Flor,,MalaAzulFundo,IMG_2700,,,,
+48,preta,Natureza,10,G,abstrato,2023,MalaAzulFundo,IMG_2701,,,,
+49,terracota,Natureza,11,G,Flor,,MalaAzulFundo,IMG_2702,,,,
+53,branca,Natureza,12,M,abstrato,2023,MalaAzulFundo,IMG_2706,,,,
+55,azul,Natureza,13,G,Coral,,,IMG_2708,,,,
+56,preta,Natureza,14,G,Coral,,,IMG_2709,,,,
+58,branca,Natureza,15,XG,Coral,,,IMG_2711,,,,
+60,vermelha,Natureza,16,G,Salamandra,,,IMG_2713,,,,
+62,preta,Natureza,17,G,Coral,,,IMG_2715,,,,
+64,branca,Natureza,18,XG,Coral,,,IMG_2717,,,,
+75,branca,Natureza,12,GG(F),FloresVermelhas,2026,,IMG_2728,,,,
+1,branca,Portas e Janelas,1,M,Portas e Janelas1,,BolsaVermelha,IMG_2654,,,,
+2,mostarda,Portas e Janelas,2,M,Portas e Janelas2,,VENDIDA,IMG_2655,,,,
+3,azul,Portas e Janelas,3,G,Portas e Janelas3,,VENDIDA,IMG_2656,,,,
+4,branca,Portas e Janelas,4,M,Portas e Janelas4,,BolsaVermelha,IMG_2657,,,,
+22,branca,Portas e Janelas,5,GG,"PortasEJanelas, bicicleta",2026,BolsaVermelha,IMG_2675,,,,
+24,branca,Portas e Janelas,6,G,Portas e Janelas6,2026,BolsaVermelha,IMG_2677,,,,
+25,branca,Portas e Janelas,7,GG,Portas e Janelas7,2026,BolsaVermelha,IMG_2678,,,,
+26,branca,Portas e Janelas,8,GG,Portas e Janelas8,,BolsaVermelha,IMG_2679,,,,
+54,branca,Portas e Janelas,9,GG(F),Portas e Janelas9,,,IMG_2707,,,,
+61,mostarda,Portas e Janelas,10,G,Portas e Janelas10,,,IMG_2714,,,,
+65,preta,Portas e Janelas,11,G,Portas e Janelas11,,,IMG_2718,,,,
+66,grafite,Portas e Janelas,12,G,Portas e Janelas12,,,IMG_2719,,,,
+67,verde,Portas e Janelas,13,G,Portas e Janelas13,,,IMG_2720,,,,`;
+
+        // Mapa de cores para preview
+        const corMap = {
+            'branca': '#ffffff',
+            'preta': '#000000',
+            'azul': '#0066cc',
+            'vermelho': '#cc0000',
+            'verde': '#009900',
+            'creme': '#ffffcc',
+            'vinho': '#800020',
+            'rosa': '#ff69b4',
+            'amarela': '#ffff00',
+            'laranja': '#ff9900'
+        };
+
+        function parseCSV(csv) {
+            const lines = csv.trim().split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const dados = [];
+
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i];
+                if (!line.trim()) continue;
+
+                // Parser simples para CSV (não trata aspas complexas)
+                const values = [];
+                let current = '';
+                let inQuotes = false;
+
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') {
+                        inQuotes = !inQuotes;
+                    } else if (char === ',' && !inQuotes) {
+                        values.push(current.trim());
+                        current = '';
+                    } else {
+                        current += char;
+                    }
+                }
+                values.push(current.trim());
+
+                const obj = {};
+                headers.forEach((header, index) => {
+                    obj[header] = values[index] || '';
+                });
+
+                if (obj.item && obj['REFERÊNCIA']) {
+                    dados.push(obj);
+                }
+            }
+
+            return dados;
+        }
+
+        function carregarDados() {
+            dadosCamisas = parseCSV(csvData);
+            // Recuperar status vendido do localStorage
+            dadosCamisas.forEach(camisa => {
+                const vendidoStatus = localStorage.getItem(`camisa-${camisa.item}-vendido`);
+                camisa.vendidoMarcado = vendidoStatus === 'true';
+            });
+            dadosFiltrados = [...dadosCamisas];
+            populaFiltros();
+            renderizarGaleria();
+            atualizarEstatisticas();
+        }
+
+        function getCor(nomeCor) {
+            const cor = nomeCor.toLowerCase().trim();
+            return corMap[cor] || '#cccccc';
+        }
+
+        function populaFiltros() {
+            const temas = [...new Set(dadosCamisas.map(c => c.tema).filter(Boolean))].sort();
+            const cores = [...new Set(dadosCamisas.map(c => c.cor).filter(Boolean))].sort();
+            const tamanhos = [...new Set(dadosCamisas.map(c => c.tamanho).filter(Boolean))].sort();
+
+            const selectTema = document.getElementById('filter-tema');
+            const selectCor = document.getElementById('filter-cor');
+            const selectTamanho = document.getElementById('filter-tamanho');
+
+            temas.forEach(tema => {
+                const option = document.createElement('option');
+                option.value = tema;
+                option.textContent = tema;
+                selectTema.appendChild(option);
+            });
+
+            cores.forEach(cor => {
+                const option = document.createElement('option');
+                option.value = cor;
+                option.textContent = cor.charAt(0).toUpperCase() + cor.slice(1);
+                selectCor.appendChild(option);
+            });
+
+            tamanhos.forEach(tamanho => {
+                const option = document.createElement('option');
+                option.value = tamanho;
+                option.textContent = tamanho;
+                selectTamanho.appendChild(option);
+            });
+        }
+
+        function aplicarFiltros() {
+            const tema = document.getElementById('filter-tema').value;
+            const cor = document.getElementById('filter-cor').value;
+            const tamanho = document.getElementById('filter-tamanho').value;
+            const status = document.getElementById('filter-status').value;
+            const referencia = document.getElementById('filter-referencia').value.toLowerCase();
+
+            dadosFiltrados = dadosCamisas.filter(camisa => {
+                const matchTema = !tema || camisa.tema === tema;
+                const matchCor = !cor || camisa.cor === cor;
+                const matchTamanho = !tamanho || camisa.tamanho === tamanho;
+                const matchReferencia = !referencia || camisa.referência.toString().toLowerCase().includes(referencia);
+                const matchStatus = !status ||
+                    (status === 'vendido' && (camisa['Vendido'] || camisa.vendidoMarcado)) ||
+                    (status === 'disponivel' && !camisa['Vendido'] && !camisa.vendidoMarcado);
+
+                return matchTema && matchCor && matchTamanho && matchReferencia && matchStatus;
+            });
+
+            renderizarGaleria();
+            atualizarEstatisticas();
+        }
+
+        function limparFiltros() {
+            document.getElementById('filter-tema').value = '';
+            document.getElementById('filter-cor').value = '';
+            document.getElementById('filter-tamanho').value = '';
+            document.getElementById('filter-status').value = '';
+            document.getElementById('filter-referencia').value = '';
+
+            dadosFiltrados = [...dadosCamisas];
+            renderizarGaleria();
+            atualizarEstatisticas();
+        }
+
+        function renderizarGaleria() {
+            const gallery = document.getElementById('gallery');
+            const emptyMsg = document.getElementById('empty-message');
+
+            gallery.innerHTML = '';
+            emptyMsg.innerHTML = '';
+
+            if (dadosFiltrados.length === 0) {
+                emptyMsg.innerHTML = '😔 Nenhuma peça encontrada com os filtros selecionados.';
+                return;
+            }
+
+            dadosFiltrados.forEach(camisa => {
+                const isVendido = camisa['Vendido'] || camisa.vendidoMarcado;
+                const card = document.createElement('div');
+                card.className = `card ${isVendido ? 'vendido' : ''}`;
+                card.id = `card-${camisa.item}`;
+
+                const corPreview = getCor(camisa.cor);
+                const statusText = isVendido ? 'Marcar como Disponível' : 'Marcar como Vendido';
+
+                card.innerHTML = `
+                    <div class="image-container">
+                        <img src="${camisa['REFERÊNCIA']}.JPEG" alt="${camisa['Titulo/ Descrição']}" 
+                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22280%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22280%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2216%22 fill=%22%23999%22 text-anchor=%22middle%22 dy=%22.3em%22%3EImagem não encontrada%3C/text%3E%3C/svg%3E'">
+                    </div>
+                    <div class="info">
+                        <div class="item-id">Item #${camisa.item}</div>
+                        <div class="info-status">${isVendido ? '❌ VENDIDO' : '✅ Disponível'}</div>
+                        <div class="descricao">${camisa['Titulo/ Descrição']}</div>
+                        <div class="atributos">
+                            <div class="atributo">
+                                <div class="atributo-label">Cor</div>
+                                <div class="atributo-valor">
+                                    <span class="cor-preview" style="background: ${corPreview};"></span>
+                                    ${camisa.cor.charAt(0).toUpperCase() + camisa.cor.slice(1)}
+                                </div>
+                            </div>
+                            <div class="atributo">
+                                <div class="atributo-label">Tamanho</div>
+                                <div class="atributo-valor">${camisa.tamanho || '-'}</div>
+                            </div>
+                            <div class="atributo">
+                                <div class="atributo-label">Tema</div>
+                                <div class="atributo-valor">${camisa.tema}</div>
+                            </div>
+                            <div class="atributo">
+                                <div class="atributo-label">Ref</div>
+                                <div class="atributo-valor">${camisa.referência}</div>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="btn-vendido" onclick="toggleVendido(${camisa.item})">
+                                ${isVendido ? '↺ Disponível' : '✓ Vendido'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                gallery.appendChild(card);
+            });
+        }
+
+        function toggleVendido(itemId) {
+            const camisa = dadosCamisas.find(c => c.item == itemId);
+            if (camisa) {
+                camisa.vendidoMarcado = !camisa.vendidoMarcado;
+                localStorage.setItem(`camisa-${itemId}-vendido`, camisa.vendidoMarcado);
+                aplicarFiltros();
+                atualizarEstatisticas();
+            }
+        }
+
+        function atualizarEstatisticas() {
+            const total = dadosCamisas.length;
+            const vendidos = dadosCamisas.filter(c => c['Vendido'] || c.vendidoMarcado).length;
+            const disponiveis = total - vendidos;
+
+            document.getElementById('total-count').textContent = total;
+            document.getElementById('available-count').textContent = disponiveis;
+            document.getElementById('vendido-count').textContent = vendidos;
+        }
+
+        function exportarCSV() {
+            let csv = 'Item,Cor,Tema,Referência,Tamanho,Descrição,Status\n';
+
+            dadosFiltrados.forEach(camisa => {
+                const status = (camisa['Vendido'] || camisa.vendidoMarcado) ? 'Vendido' : 'Disponível';
+                csv += `"${camisa.item}","${camisa.cor}","${camisa.tema}","${camisa.referência}","${camisa.tamanho}","${camisa['Titulo/ Descrição']}","${status}"\n`;
+            });
+
+            const blob = new Blob([csv], {
+                type: 'text/csv;charset=utf-8;'
+            });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `camisas_${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        }
+
+        // Inicializar ao carregar a página
+        document.addEventListener('DOMContentLoaded', carregarDados);
+    </script>
+</body>
+
+</html>
