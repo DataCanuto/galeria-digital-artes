@@ -1,0 +1,112 @@
+{
+  "artista": {
+    "nome": "Paulo Canuto",
+    "descricao_curta": "Arquiteto urbanista e artista plástico",
+    "bio_resumida": "Arquiteto urbanista e artista plástico, com mais de 50 anos dedicados à investigação artística do ambiente urbano, suas dinâmicas e ocupantes.",
+    "whatsapp": "5571999588950",
+    "email": "contato@paulocanuto.com",
+    "redes_sociais": {
+      "instagram": "https://instagram.com/paulocanuto",
+      "facebook": "https://facebook.com/paulocanuto",
+      "linkedin": "https://linkedin.com/in/paulocanuto"
+    }
+  },
+  "categorias": [
+    {
+      "id": "telas",
+      "nome": "Telas",
+      "descricao": "Obras em acrílica sobre tela - exploração de temas urbanos e arquitectónicos",
+      "icone": "🎨",
+      "quantidade": 15
+    },
+    {
+      "id": "aerografias",
+      "nome": "Aerografias",
+      "descricao": "Técnica de pintura inovadora que captura movimento e dinâmica urbana",
+      "icone": "💨",
+      "quantidade": 15
+    },
+    {
+      "id": "desenhos_aquarelas",
+      "nome": "Desenhos & Aquarelas",
+      "descricao": "Série Mergulhos - exploração da fluidez e movimento aquático como metáfora urbana",
+      "icone": "💧",
+      "quantidade": 10
+    },
+    {
+      "id": "dobraduras",
+      "nome": "Dobraduras em Fio de Cobre",
+      "descricao": "Esculturas miniaturizadas - reciclagem e arte tridimensional urbana",
+      "icone": "🔧",
+      "quantidade": 9
+    },
+    {
+      "id": "camisas",
+      "nome": "Camisetas Pintadas",
+      "descricao": "Arte vestível - design pop e temas urbanos em suporte têxtil",
+      "icone": "👕",
+      "quantidade": 9
+    }
+  ],
+  "obras": [
+    {
+      "id": 1,
+      "titulo": "PORTAS E JANELAS 1",
+      "categoria": "telas",
+      "tecnica": "ACRÍLICA SOBRE TELA",
+      "dimensoes": "100 X 60",
+      "ano": 2018,
+      "preco": 6000,
+      "status": "disponivel",
+      "descricao": "Uma exploração das fachadas históricas de Salvador, focando nas portas e janelas que definem a arquitectura colonial baiana.",
+      "imagem": "REF 01...PORTAS E JANELAS 1.jpg"
+    },
+    {
+      "id": 2,
+      "titulo": "CENAS URBANAS 1",
+      "categoria": "telas",
+      "tecnica": "ACRÍLICA SOBRE TELA",
+      "dimensoes": "80 X 60",
+      "ano": 2019,
+      "preco": 5500,
+      "status": "disponivel",
+      "descricao": "Captura do movimento e fluxo urbano em uma grande metrópole.",
+      "imagem": "REF 02...CENAS URBANAS 1.jpg"
+    },
+    {
+      "id": 3,
+      "titulo": "MOVIMENTO URBANO",
+      "categoria": "aerografias",
+      "tecnica": "AEROGRAFIA SOBRE PAPEL",
+      "dimensoes": "70 X 50",
+      "ano": 2015,
+      "preco": 2500,
+      "status": "disponivel",
+      "descricao": "Série de aerografias que exploram a dinâmica e velocidade do ambiente urbano.",
+      "imagem": "REF 03...MOVIMENTO URBANO.jpg"
+    }
+  ],
+  "textos_curatoriais": [
+    {
+      "titulo": "Minhas palavras sobre a mostra",
+      "autor": "Paulo Canuto",
+      "tipo": "artista",
+      "data": "outubro 2025",
+      "conteudo": "Arquiteto urbanista e artista plástico, desenho e pinto há mais de 50 anos com um olhar investigativo sobre o ambiente urbano, com o movimento contínuo de seus ocupantes, o design dos meios de transporte, sua arquitetura e seus elementos históricos.\n\nAutodidata, sempre gostei de experimentar as diversas técnicas de pintura e aplicá-las em suportes diferenciados. Desde os anos 80 utilizo a aerografia como uma das técnicas favoritas, embora admita que o prazer e a emoção do desenho e da pintura tradicionais são insubstituíveis/incomparáveis.\n\nA partir da aerografia dei início às pinturas em papel e tecido através da produção de posters, o que me motivou às primeiras exposições.\n\nÉ deste período que surgiu a vontade de explorar a pintura em tecido, utilizando como suporte a camiseta básica de algodão, motivada pela possibilidade da livre circulação e assim divulgar minha produção artística.\n\nDesde essa época tenho identificado uma tendência ao estilo pop, nos meus trabalhos, com a utilização de temas urbanos, esportivos, corporais, design de carros, ícones da música e movimentos de dança.\n\nAtualmente tenho buscado diversificar as técnicas de pintura com a introdução de serigrafia e uso de projetor, bem como de outros suportes como MDF, papel pluma, compensado, fórmica e placa cimentícia.\n\nEm busca de novos experimentos surgiu a ideia de reciclar um precioso refugo da construção civil - o fio de cobre desencapado, utilizando-o para fazer dobraduras que resultam em objetos e elementos expressivos.\n\nA atual mostra denominada DiverCidade traz um resumo das experiências vivenciadas ao longo desses anos, no qual os temas e imagens estão entrelaçados por um fio cujo foco é a diversidade urbana."
+    },
+    {
+      "titulo": "Um artista, a cidade, seus ocupantes e seus meios",
+      "autor": "Chico Mazzoni",
+      "tipo": "curador",
+      "data": "2025",
+      "conteudo": "Paulo Canuto olha para a cidade desde que eu o conheço. E isso vem das nossas adolescências, colegas num curso de inglês. Entretanto não se trata de um olhar para uma cidade que se captura numa fotografia. Ele olha para uma cidade que se move, uma cidade viva, dinâmica, com seus componentes e ocupantes em contínuo deslocamento..."
+    },
+    {
+      "titulo": "Paulo Canuto: A Cidade em Movimento",
+      "autor": "Marcos Rodrigues",
+      "tipo": "critico",
+      "data": "2025",
+      "conteudo": "A obra de Paulo Canuto, arquiteto, urbanista e artista plástico, inscreve-se em uma tradição: a de artistas que tomam a cidade não apenas como tema, mas como campo de invenção estética e política..."
+    }
+  ]
+}

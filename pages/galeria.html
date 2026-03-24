@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Galeria - Paulo Canuto</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #d4af37;
+            --light-bg: #f5f5f5;
+            --text-dark: #2d2d2d;
+            --text-light: #666666;
+            --white: #ffffff;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .breadcrumb {
+            font-size: 0.9rem;
+            color: rgb(255, 255, 255, 0.7);
+        }
+
+        .breadcrumb a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .category-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .artwork-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .artwork-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .artwork-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), #2d2d2d);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        .artwork-info {
+            padding: 1.5rem;
+        }
+
+        .artwork-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .artwork-meta {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .artwork-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .artwork-status {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-disponivel {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-vendido {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .artwork-cta {
+            display: block;
+            margin-top: 1rem;
+            padding: 0.75rem;
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background 0.3s;
+        }
+
+        .artwork-cta:hover {
+            background: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.6rem 1.5rem;
+            border: 2px solid var(--primary-color);
+            background: var(--white);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .filter-btn:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            main {
+                padding: 1.5rem 1rem;
+            }
+
+            .category-header h1 {
+                font-size: 2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" class="logo">Paulo <span>Canuto</span></a>
+            <div class="breadcrumb">
+                <a href="../index.html">Início</a> > <span id="categoryBreadcrumb">Galeria</span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="category-header">
+            <h1 id="categoryTitle">Carregando...</h1>
+            <p id="categoryDescription">Carregando descrição...</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="todas">Todas</button>
+            <button class="filter-btn" data-filter="disponivel">Disponíveis</button>
+            <button class="filter-btn" data-filter="vendido">Vendidas</button>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Preenchido dinamicamente -->
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Paulo Canuto. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const getUrlParameter = (name) => {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(name) || 'telas';
+        };
+
+        let categoryId = getUrlParameter('category');
+        let filterActive = 'todas';
+        let allWorks = [];
+
+        // Carregar dados
+        fetch('../assets/data/obras.json')
+            .then(response => response.json())
+            .then(data => {
+                // Encontrar categoria
+                const category = data.categorias.find(c => c.id === categoryId);
+                if (category) {
+                    document.getElementById('pageTitle').textContent = `${category.nome} - Paulo Canuto`;
+                    document.getElementById('categoryTitle').textContent = category.nome;
+                    document.getElementById('categoryDescription').textContent = category.descricao;
+                    document.getElementById('categoryBreadcrumb').textContent = category.nome;
+                }
+
+                // Filtrar obras pela categoria
+                allWorks = data.obras.filter(obra => obra.categoria === categoryId);
+
+                renderGallery();
+            })
+            .catch(error => console.error('Erro ao carregar dados:', error));
+
+        // Filtros
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                filterActive = btn.dataset.filter;
+                renderGallery();
+            });
+        });
+
+        function renderGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            galleryGrid.innerHTML = '';
+
+            let filteredWorks = allWorks;
+
+            if (filterActive === 'disponivel') {
+                filteredWorks = allWorks.filter(w => w.status === 'disponivel');
+            } else if (filterActive === 'vendido') {
+                filteredWorks = allWorks.filter(w => w.status === 'vendido');
+            }
+
+            if (filteredWorks.length === 0) {
+                galleryGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-light);">Nenhuma obra encontrada nesta categoria.</p>';
+                return;
+            }
+
+            filteredWorks.forEach(obra => {
+                const card = document.createElement('div');
+                card.className = 'artwork-card';
+                const statusClass = obra.status === 'disponivel' ? 'status-disponivel' : 'status-vendido';
+                const statusText = obra.status === 'disponivel' ? 'Disponível' : 'Vendido';
+
+                card.innerHTML = `
+                    <div class="artwork-image">🖼️</div>
+                    <div class="artwork-info">
+                        <div class="artwork-title">${obra.titulo}</div>
+                        <div class="artwork-meta">${obra.tecnica} • ${obra.ano}</div>
+                        <div class="artwork-price">R$ ${obra.preco.toLocaleString('pt-BR')}</div>
+                        <span class="artwork-status ${statusClass}">${statusText}</span>
+                        <a href="https://wa.me/5571999588950?text=Tenho interesse na obra: ${obra.titulo}" class="artwork-cta" target="_blank">
+                            Expressar Interesse
+                        </a>
+                    </div>
+                `;
+
+                galleryGrid.appendChild(card);
+            });
+        }
+    </script>
+</body>
+</html>

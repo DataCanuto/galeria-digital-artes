@@ -1,0 +1,113 @@
+{
+  "app_name": "Paulo Canuto - Landing Page",
+  "version": "1.0.0",
+  "description": "Uma landing page sofisticada e responsiva para apresentar o trabalho artístico de Paulo Canuto",
+  "artist": {
+    "name": "Paulo Canuto",
+    "title": "Arquiteto Urbanista & Artista Plástico",
+    "bio": "Com mais de 50 anos dedicados à investigação artística do ambiente urbano, suas dinâmicas e ocupantes.",
+    "whatsapp": "5571999588950",
+    "email": "contato@paulocanuto.com",
+    "location": "Salvador, Bahia - Brasil"
+  },
+  "website": {
+    "url": "https://www.paulocanuto.com",
+    "pages": [
+      {
+        "name": "Landing Page",
+        "path": "/index.html",
+        "description": "Página principal com biografia e galeria destaca"
+      },
+      {
+        "name": "Galeria Dinâmica",
+        "path": "/pages/galeria.html",
+        "description": "Galeria de obras filtrada por categoria"
+      },
+      {
+        "name": "Catálogo Original",
+        "path": "/catalog_mobile/index.html",
+        "description": "Catálogo original (mantido para compatibilidade)"
+      }
+    ]
+  },
+  "features": {
+    "responsive": true,
+    "mobile_first": true,
+    "dynamic_data": true,
+    "comments_system": true,
+    "whatsapp_integration": true,
+    "dark_mode_ready": true
+  },
+  "categories": [
+    {
+      "id": "telas",
+      "name": "Telas",
+      "count": 0,
+      "icon": "🎨"
+    },
+    {
+      "id": "aerografias",
+      "name": "Aerografias",
+      "count": 0,
+      "icon": "💨"
+    },
+    {
+      "id": "desenhos_aquarelas",
+      "name": "Desenhos & Aquarelas",
+      "count": 0,
+      "icon": "💧"
+    },
+    {
+      "id": "dobraduras",
+      "name": "Dobraduras em Fio de Cobre",
+      "count": 0,
+      "icon": "🔧"
+    },
+    {
+      "id": "camisas",
+      "name": "Camisetas Pintadas",
+      "count": 0,
+      "icon": "👕"
+    }
+  ],
+  "database": {
+    "format": "JSON",
+    "file": "assets/data/obras.json",
+    "auto_update_script": "atualizar_dados.py",
+    "backup_location": "assets/data/backups/"
+  },
+  "deployment": {
+    "hosting": "GitHub Pages / Vercel / Static Host",
+    "requirements": [
+      "Node.js (opcional, para build)",
+      "Python 3.7+ (para script de atualização)",
+      "beautifulsoup4 (Python dependency)"
+    ],
+    "build_command": "python atualizar_dados.py",
+    "start_command": "python -m http.server 8000"
+  },
+  "seo": {
+    "title": "Paulo Canuto | Artista Plástico & Urbanista",
+    "description": "Explore 50+ anos de investigação artística sobre o ambiente urbano. Conheça o trabalho de Paulo Canuto: telas, aerografias, dobraduras e muito mais.",
+    "keywords": [
+      "arte",
+      "pintura",
+      "aerografia",
+      "Salvador",
+      "Bahia",
+      "artista",
+      "urbanismo",
+      "paulo canuto"
+    ]
+  },
+  "social_media": {
+    "instagram": "https://instagram.com/paulocanuto",
+    "facebook": "https://facebook.com/paulocanuto",
+    "linkedin": "https://linkedin.com/in/paulocanuto"
+  },
+  "maintenance": {
+    "last_updated": "2025-03-24",
+    "next_update": "Quando houver mudanças nas obras",
+    "backup_schedule": "Mensal"
+  }
+}
