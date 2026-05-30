@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
@@ -17,8 +18,8 @@
         }
 
         :root {
-            --primary-color: #1a1a1a;
-            --accent-color: #d4af37;
+            --primary: #1a1a1a;
+            --accent: #d4af37;
             --light-bg: #f5f5f5;
             --text-dark: #2d2d2d;
             --text-light: #666666;
@@ -30,17 +31,15 @@
         body {
             font-family: 'Lato', sans-serif;
             color: var(--text-dark);
-            background-color: var(--white);
+            background: var(--white);
             line-height: 1.6;
         }
 
-        /* ============================================ */
-        /* HEADER & NAVIGATION */
-        /* ============================================ */
+        /* HEADER */
         header {
             position: sticky;
             top: 0;
-            background: var(--primary-color);
+            background: var(--primary);
             color: var(--white);
             z-index: 1000;
             box-shadow: var(--shadow);
@@ -64,7 +63,7 @@
         }
 
         .logo span {
-            color: var(--accent-color);
+            color: var(--accent);
         }
 
         .nav-menu {
@@ -77,30 +76,24 @@
         .nav-menu a {
             color: var(--white);
             text-decoration: none;
-            transition: color 0.3s;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 0.05rem;
+            transition: color 0.3s;
         }
 
         .nav-menu a:hover {
-            color: var(--accent-color);
+            color: var(--accent);
         }
 
         .nav-toggle {
             display: none;
-            flex-direction: column;
+            background: none;
+            border: none;
             cursor: pointer;
-            gap: 5px;
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--white);
-            border-radius: 2px;
-            transition: all 0.3s;
+            color: var(--white);
+            font-size: 1.5rem;
         }
 
         @media (max-width: 768px) {
@@ -109,20 +102,19 @@
             }
 
             .nav-menu {
+                display: none;
                 position: absolute;
                 top: 70px;
                 left: 0;
                 right: 0;
                 flex-direction: column;
-                background: var(--primary-color);
+                background: var(--primary);
                 gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s;
+                padding: 1rem 0;
             }
 
             .nav-menu.active {
-                max-height: 300px;
+                display: flex;
             }
 
             .nav-menu a {
@@ -131,15 +123,13 @@
             }
 
             .nav-toggle {
-                display: flex;
+                display: block;
             }
         }
 
-        /* ============================================ */
-        /* HERO SECTION */
-        /* ============================================ */
+        /* HERO */
         .hero {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #2d2d2d 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #2d2d2d 100%);
             color: var(--white);
             padding: 6rem 2rem;
             text-align: center;
@@ -178,7 +168,7 @@
 
         .hero .subtitle {
             font-size: 1.3rem;
-            color: var(--accent-color);
+            color: var(--accent);
             margin-bottom: 1.5rem;
             font-weight: 300;
             letter-spacing: 0.1em;
@@ -217,8 +207,8 @@
         }
 
         .btn-primary {
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent);
+            color: var(--primary);
         }
 
         .btn-primary:hover {
@@ -234,7 +224,7 @@
 
         .btn-secondary:hover {
             background: var(--white);
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         @media (max-width: 768px) {
@@ -251,16 +241,11 @@
             }
         }
 
-        /* ============================================ */
-        /* ABOUT SECTION */
-        /* ============================================ */
+        /* ABOUT */
         .about {
             padding: 5rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
-            background: var(--light-bg);
-            border-radius: 15px;
-            margin: 4rem 2rem 0;
         }
 
         .section-title {
@@ -281,7 +266,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: var(--accent-color);
+            background: var(--accent);
             border-radius: 2px;
         }
 
@@ -290,12 +275,15 @@
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: center;
+            background: var(--light-bg);
+            padding: 3rem;
+            border-radius: 12px;
         }
 
         .about-text h3 {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .about-text p {
@@ -304,54 +292,57 @@
             color: var(--text-light);
         }
 
-        .highlights {
+        .about-highlights {
             display: flex;
             gap: 2rem;
-            margin-top: 2.5rem;
+            flex-wrap: wrap;
         }
 
-        .highlight-item {
+        .highlight {
             flex: 1;
+            min-width: 150px;
         }
 
-        .highlight-item h4 {
+        .highlight h4 {
             font-size: 1.1rem;
             margin-bottom: 0.5rem;
-            color: var(--accent-color);
+            color: var(--accent);
         }
 
-        .highlight-item p {
-            font-size: 0.95rem;
+        .highlight p {
+            font-size: 0.9rem;
             color: var(--text-light);
         }
 
         @media (max-width: 768px) {
             .about {
-                margin: 2rem 1rem 0;
-                padding: 2rem 1.5rem;
+                padding: 2rem 1rem;
             }
 
             .about-content {
                 grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
             }
 
-            .highlights {
-                flex-direction: column;
+            .section-title {
+                font-size: 2rem;
             }
         }
 
-        /* ============================================ */
-        /* CATEGORIES SECTION */
-        /* ============================================ */
+        /* CATEGORIES */
         .categories {
+            background: var(--light-bg);
             padding: 5rem 2rem;
+        }
+
+        .categories-wrapper {
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
@@ -359,19 +350,18 @@
         .category-card {
             background: var(--white);
             border-radius: 12px;
-            padding: 2.5rem;
+            padding: 2rem;
             text-align: center;
             box-shadow: var(--shadow);
             transition: all 0.3s;
             border-top: 4px solid transparent;
             cursor: pointer;
-            display: block;
         }
 
         .category-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-lg);
-            border-top-color: var(--accent-color);
+            border-top-color: var(--accent);
         }
 
         .category-icon {
@@ -380,40 +370,65 @@
         }
 
         .category-card h3 {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 1rem;
-            color: var(--primary-color);
+            color: var(--primary);
         }
 
         .category-card p {
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             color: var(--text-light);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .category-count {
             display: inline-block;
-            background: var(--accent-color);
-            color: var(--primary-color);
-            padding: 0.5rem 1.5rem;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
             border-radius: 20px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* ============================================ */
-        /* GALLERY SECTION */
-        /* ============================================ */
+        /* GALLERY */
         .gallery {
             padding: 5rem 2rem;
-            background: var(--light-bg);
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .gallery-controls {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            border: 2px solid var(--primary);
+            background: var(--white);
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2.5rem;
             margin-top: 3rem;
         }
@@ -428,19 +443,29 @@
         }
 
         .gallery-item:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
         }
 
         .gallery-item-image {
             width: 100%;
             height: 300px;
-            background: linear-gradient(135deg, var(--primary-color), #2d2d2d);
+            background: linear-gradient(135deg, var(--primary), #2d2d2d);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--accent-color);
-            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .gallery-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-image img {
+            transform: scale(1.05);
         }
 
         .gallery-item-content {
@@ -448,31 +473,34 @@
         }
 
         .gallery-item-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
-            color: var(--primary-color);
+            color: var(--primary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         .gallery-item-meta {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-light);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .gallery-item-price {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--accent-color);
+            font-size: 1.2rem;
+            color: var(--accent);
             font-weight: 600;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .gallery-item-status {
             display: inline-block;
-            padding: 0.4rem 1rem;
+            padding: 0.35rem 0.8rem;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
         }
@@ -487,218 +515,143 @@
             color: #c62828;
         }
 
-        /* ============================================ */
-        /* TESTIMONIALS SECTION */
-        /* ============================================ */
-        .testimonials {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            color: var(--text-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .testimonial-author {
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .testimonial-role {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
-
-        /* ============================================ */
-        /* COMMENTS SECTION */
-        /* ============================================ */
-        .comments {
-            padding: 5rem 2rem;
-            background: var(--light-bg);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .comments-container {
-            margin-top: 3rem;
-        }
-
-        .comment-form {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .comment-list {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .comment {
-            background: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            border-left: 3px solid var(--accent-color);
-        }
-
-        .comment-author {
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .comment-date {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-        }
-
-        .comment-text {
-            line-height: 1.6;
-            color: var(--text-dark);
-        }
-
-        /* ============================================ */
         /* FOOTER */
-        /* ============================================ */
         footer {
-            background: var(--primary-color);
+            background: var(--primary);
             color: var(--white);
             padding: 3rem 2rem;
-            margin-top: 5rem;
+            text-align: center;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        }
+
+        .footer-contact {
             margin-bottom: 2rem;
         }
 
-        .footer-section h3 {
-            font-size: 1.2rem;
-            margin-bottom: 1.5rem;
-            color: var(--accent-color);
+        .footer-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 1rem;
         }
 
-        .footer-section p {
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
+        .footer-contact a:hover {
+            text-decoration: underline;
         }
 
-        .social-links {
+        .footer-social {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
         }
 
-        .social-links a {
-            display: inline-flex;
+        .social-link {
             width: 40px;
             height: 40px;
-            background: var(--accent-color);
-            color: var(--primary-color);
+            background: var(--accent);
+            color: var(--primary);
             border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: all 0.3s;
+            font-weight: bold;
+            transition: transform 0.3s;
         }
 
-        .social-links a:hover {
+        .social-link:hover {
             transform: scale(1.1);
         }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 2rem;
-            text-align: center;
+        .footer-text {
             font-size: 0.9rem;
             color: rgba(255, 255, 255, 0.7);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
         }
 
-        .footer-bottom p {
-            margin-bottom: 0.5rem;
+        /* LOADING & EMPTY STATES */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
         }
 
-        /* ============================================ */
-        /* UTILITY CLASSES */
-        /* ============================================ */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-light);
         }
 
-        .section-spacing {
-            margin-top: 5rem;
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
         }
 
-        @media (max-width: 768px) {
-            .gallery-grid,
-            .categories-grid,
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--light-bg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .modal-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--light-bg);
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .modal-footer .btn {
+            margin: 0;
         }
     </style>
 </head>
@@ -707,323 +660,273 @@
     <header>
         <nav>
             <div class="logo">Paulo <span>Canuto</span></div>
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+            <button class="nav-toggle" id="navToggle">☰</button>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#categorias">Categorias</a></li>
                 <li><a href="#galeria">Galeria</a></li>
-                <li><a href="#comentarios">Comentários</a></li>
+                <li><a href="#categorias">Categorias</a></li>
+                <li><a href="#sobre">Sobre</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
             <h1>Paulo Canuto</h1>
-            <div class="subtitle">Arquiteto • Urbanista • Artista Plástico</div>
-            <p>50+ anos de investigação artística sobre o ambiente urbano, seus ocupantes, dinâmicas e transformações. Uma exploração contínua da cidade como metáfora, palco e musa.</p>
+            <p class="subtitle">Artista Plástico & Urbanista</p>
+            <p>Exploração artística de 50 anos sobre o ambiente urbano, seus ocupantes e dinâmicas</p>
             <div class="cta-buttons">
-                <a href="#galeria" class="btn btn-primary">Explorar Obras</a>
+                <a href="#galeria" class="btn btn-primary">Explorar Galeria</a>
                 <a href="#contato" class="btn btn-secondary">Entrar em Contato</a>
             </div>
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
+    <!-- ABOUT -->
     <section class="about" id="sobre">
-        <h2 class="section-title">Sobre o Artista</h2>
+        <h2 class="section-title">Sobre Paulo Canuto</h2>
         <div class="about-content">
             <div class="about-text">
-                <h3>Uma Trajetória Dedicada à Arte Urbana</h3>
-                <p id="aboutText">Carregando...</p>
-                <div class="highlights">
-                    <div class="highlight-item">
-                        <h4>50+ Anos</h4>
-                        <p>De investigação artística contínua</p>
+                <h3>Um olhar investigativo sobre a cidade</h3>
+                <p>Arquiteto urbanista e artista plástico, com mais de 50 anos dedicados à investigação artística do ambiente urbano, suas dinâmicas e ocupantes.</p>
+                <p>Autodidata, sempre experimenta diversas técnicas de pintura e as aplica em suportes diferenciados, desde os anos 80 utilizando a aerografia como uma das técnicas favoritas.</p>
+                <div class="about-highlights">
+                    <div class="highlight">
+                        <h4>50+ anos</h4>
+                        <p>De exploração artística</p>
                     </div>
-                    <div class="highlight-item">
-                        <h4>5+ Técnicas</h4>
-                        <p>Múltiplos suportes e materiais</p>
+                    <div class="highlight">
+                        <h4>58 obras</h4>
+                        <p>Em diversos suportes</p>
                     </div>
-                    <div class="highlight-item">
-                        <h4>100+ Obras</h4>
-                        <p>Explorações urbanas e artísticas</p>
+                    <div class="highlight">
+                        <h4>Múltiplas</h4>
+                        <p>Técnicas e estilos</p>
                     </div>
                 </div>
             </div>
-            <div style="height: 300px; background: linear-gradient(135deg, #1a1a1a, #2d2d2d); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-color); font-size: 4rem;">
-                🎨
+            <div>
+                <p style="text-align: center; color: var(--text-light); font-style: italic;">A atual mostra denominada <strong>DiverCidade</strong> traz um resumo das experiências vivenciadas ao longo desses anos, no qual os temas e imagens estão entrelaçados por um fio cujo foco é a diversidade urbana.</p>
             </div>
         </div>
     </section>
 
-    <!-- CATEGORIES SECTION -->
+    <!-- CATEGORIES -->
     <section class="categories" id="categorias">
-        <h2 class="section-title">Categorias de Obras</h2>
-        <div class="categories-grid" id="categoriesGrid">
-            <!-- Preenchido dinamicamente -->
+        <div class="categories-wrapper">
+            <h2 class="section-title">Categorias de Obras</h2>
+            <div class="categories-grid" id="categoriesGrid">
+                <!-- Carregado dinamicamente por JS -->
+            </div>
         </div>
     </section>
 
-    <!-- GALLERY SECTION -->
+    <!-- GALLERY -->
     <section class="gallery" id="galeria">
-        <h2 class="section-title">Galeria Destacada</h2>
+        <h2 class="section-title">Galeria de Obras</h2>
+        
+        <div class="gallery-controls">
+            <button class="filter-btn active" data-filter="todas">Todas</button>
+            <button class="filter-btn" data-filter="telas">Telas</button>
+            <button class="filter-btn" data-filter="aerografias">Aerografias</button>
+            <button class="filter-btn" data-filter="desenhos_aquarelas">Desenhos</button>
+            <button class="filter-btn" data-filter="dobraduras">Dobraduras</button>
+            <button class="filter-btn" data-filter="camisas">Camisas</button>
+        </div>
+
         <div class="gallery-grid" id="galleryGrid">
-            <!-- Preenchido dinamicamente -->
+            <div class="loading">Carregando obras...</div>
         </div>
     </section>
 
-    <!-- TESTIMONIALS SECTION -->
-    <section class="testimonials">
-        <h2 class="section-title">Textos Curatoriais</h2>
-        <div class="testimonials-grid" id="testimonialsGrid">
-            <!-- Preenchido dinamicamente -->
-        </div>
-    </section>
-
-    <!-- COMMENTS SECTION -->
-    <section class="comments" id="comentarios">
-        <h2 class="section-title">Comentários & Feedback</h2>
-        <div class="comments-container">
-            <div class="comment-form">
-                <form id="commentForm">
-                    <div class="form-group">
-                        <label for="commentName">Nome</label>
-                        <input type="text" id="commentName" name="nama" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="commentEmail">Email</label>
-                        <input type="email" id="commentEmail" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="commentText">Seu Comentário</label>
-                        <textarea id="commentText" name="texto" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Enviar Comentário</button>
-                </form>
-            </div>
-            <div class="comment-list" id="commentsList">
-                <!-- Comentários preenchidos dinamicamente -->
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
-    <section class="footer-section" id="contato" style="padding: 5rem 2rem; text-align: center; background: var(--light-bg); max-width: 1200px; margin: 0 auto;">
-        <h2 class="section-title">Vamos Conversar?</h2>
-        <p style="font-size: 1.1rem; margin: 2rem 0; color: var(--text-light);">Interessado em uma obra ou gostaria de saber mais sobre o trabalho de Paulo Canuto?</p>
-        <div class="cta-buttons" style="margin-top: 2rem;">
-            <a href="https://wa.me/5571999588950" class="btn btn-primary">WhatsApp</a>
+    <!-- CONTACT -->
+    <section style="padding: 5rem 2rem; background: var(--light-bg); text-align: center;" id="contato">
+        <h2 class="section-title">Entre em Contato</h2>
+        <p style="max-width: 600px; margin: 0 auto 2rem; color: var(--text-light); font-size: 1.1rem;">Tem interesse em alguma obra? Quer conversar sobre arte e cidade? Entre em contato conosco!</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/5571999588950" class="btn btn-primary" target="_blank">WhatsApp</a>
             <a href="mailto:contato@paulocanuto.com" class="btn btn-secondary">Email</a>
-            <a href="#" class="btn btn-secondary">Instagram</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-content">
-            <div class="footer-section">
-                <h3>Paulo Canuto</h3>
-                <p>Artista plástico, arquiteto e urbanista dedicado à exploração contínua da cidade como tema, metáfora e método artístico.</p>
-                <div class="social-links">
-                    <a href="#" title="Instagram">📷</a>
-                    <a href="#" title="Facebook">f</a>
-                    <a href="#" title="LinkedIn">in</a>
-                </div>
+            <div class="footer-contact">
+                <a href="https://wa.me/5571999588950" target="_blank">WhatsApp: +55 71 99958-8950</a>
+                <a href="mailto:contato@paulocanuto.com">Email: contato@paulocanuto.com</a>
             </div>
-            <div class="footer-section">
-                <h3>Categorias</h3>
-                <p><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Telas</a></p>
-                <p><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Aerografias</a></p>
-                <p><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Desenhos & Aquarelas</a></p>
-                <p><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Dobraduras em Cobre</a></p>
-                <p><a href="#" style="color: rgba(255,255,255,0.7); text-decoration: none;">Camisetas Pintadas</a></p>
+            <div class="footer-social">
+                <a href="https://instagram.com/paulocanuto" class="social-link" target="_blank">@</a>
+                <a href="https://facebook.com/paulocanuto" class="social-link" target="_blank">f</a>
             </div>
-            <div class="footer-section">
-                <h3>Contato</h3>
-                <p>WhatsApp: <strong id="whatsappDisplay">+55 71 99958-8950</strong></p>
-                <p>Email: <strong>contato@paulocanuto.com</strong></p>
-                <p>Salvador, Bahia - Brasil</p>
+            <div class="footer-text">
+                <p>&copy; 2024 Paulo Canuto. Todos os direitos reservados.</p>
+                <p>Galeria Digital | Curadoria de Artes Urbanas</p>
             </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Paulo Canuto. Todos os direitos reservados.</p>
-            <p>Website desenvolvido com dedicação ao seu trabalho artístico.</p>
         </div>
     </footer>
 
+    <!-- MODAL -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalImage" style="width: 100%; margin-bottom: 1.5rem; max-height: 400px; border-radius: 8px; overflow: hidden;">
+                    <img src="" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <p><strong>Técnica:</strong> <span id="modalTecnica"></span></p>
+                <p><strong>Dimensões:</strong> <span id="modalDimensoes"></span></p>
+                <p><strong>Ano:</strong> <span id="modalAno"></span></p>
+                <p><strong>Preço:</strong> <span id="modalPreco" style="color: var(--accent); font-weight: bold;"></span></p>
+                <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="modalClose2">Fechar</button>
+                <a href="" class="btn btn-primary" id="modalWhatsapp" target="_blank">Conversar no WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // ============================================
-        // MOBILE MENU TOGGLE
-        // ============================================
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
+        let obrasData = [];
+        let filtroAtivo = 'todas';
 
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Fechar menu ao clicar em um link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // ============================================
-        // CARREGAR DADOS DINAMICAMENTE
-        // ============================================
-        let workData = {};
-
-        fetch('assets/data/obras.json')
-            .then(response => response.json())
-            .then(data => {
-                workData = data;
-                renderAbout();
-                renderCategories();
-                renderGallery();
-                renderTestimonials();
-                loadComments();
-            })
-            .catch(error => console.error('Erro ao carregar dados:', error));
-
-        function renderAbout() {
-            const aboutText = document.getElementById('aboutText');
-            aboutText.textContent = workData.artista.bio_resumida;
+        // Carregar dados do JSON
+        async function carregarDados() {
+            try {
+                const response = await fetch('assets/data/obras.json');
+                const data = await response.json();
+                obrasData = data.obras;
+                
+                renderizarCategorias(data.categorias);
+                renderizarGaleria(obrasData);
+                configurarEventos();
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                document.getElementById('galleryGrid').innerHTML = '<div class="empty-state">Erro ao carregar obras. Por favor, tente novamente.</div>';
+            }
         }
 
-        function renderCategories() {
-            const categoriesGrid = document.getElementById('categoriesGrid');
-            categoriesGrid.innerHTML = '';
-
-            workData.categorias.forEach(categoria => {
-                const categoryCard = document.createElement('a');
-                categoryCard.href = `pages/galeria.html?category=${categoria.id}`;
-                categoryCard.className = 'category-card';
-                categoryCard.style.textDecoration = 'none';
-                categoryCard.style.color = 'inherit';
-                categoryCard.innerHTML = `
-                    <div class="category-icon">${categoria.icone}</div>
-                    <h3>${categoria.nome}</h3>
-                    <p>${categoria.descricao}</p>
-                    <div class="category-count">${categoria.quantidade} obras</div>
-                `;
-                categoriesGrid.appendChild(categoryCard);
-            });
+        // Renderizar categorias
+        function renderizarCategorias(categorias) {
+            const grid = document.getElementById('categoriesGrid');
+            grid.innerHTML = categorias.map(cat => `
+                <div class="category-card" onclick="filtrarPor('${cat.id}')">
+                    <div class="category-icon">${cat.icone}</div>
+                    <h3>${cat.nome}</h3>
+                    <p>${cat.descricao}</p>
+                    <span class="category-count">${cat.quantidade} obras</span>
+                </div>
+            `).join('');
         }
 
-        function renderGallery() {
-            const galleryGrid = document.getElementById('galleryGrid');
-            galleryGrid.innerHTML = '';
-
-            (workData.obras || []).slice(0, 6).forEach(obra => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                const statusClass = obra.status === 'disponivel' ? 'status-disponivel' : 'status-vendido';
-                const statusText = obra.status === 'disponivel' ? 'Disponível' : 'Vendido';
-
-                galleryItem.innerHTML = `
-                    <div class="gallery-item-image">🖼️</div>
-                    <div class="gallery-item-content">
-                        <div class="gallery-item-title">${obra.titulo}</div>
-                        <div class="gallery-item-meta">${obra.tecnica} • ${obra.ano}</div>
-                        <div class="gallery-item-price">R$ ${obra.preco.toLocaleString('pt-BR')}</div>
-                        <span class="gallery-item-status ${statusClass}">${statusText}</span>
-                    </div>
-                `;
-                galleryGrid.appendChild(galleryItem);
-            });
-        }
-
-        function renderTestimonials() {
-            const testimonialsGrid = document.getElementById('testimonialsGrid');
-            testimonialsGrid.innerHTML = '';
-
-            (workData.textos_curatoriais || []).forEach(texto => {
-                const testimonialCard = document.createElement('div');
-                testimonialCard.className = 'testimonial-card';
-                testimonialCard.innerHTML = `
-                    <div class="testimonial-text">"${texto.conteudo.substring(0, 150)}..."</div>
-                    <div class="testimonial-author">${texto.autor}</div>
-                    <div class="testimonial-role">${texto.tipo === 'curador' ? 'Curador' : texto.tipo === 'critico' ? 'Crítico' : 'Artista'}</div>
-                `;
-                testimonialsGrid.appendChild(testimonialCard);
-            });
-        }
-
-        // ============================================
-        // SISTEMA DE COMENTÁRIOS
-        // ============================================
-        const commentForm = document.getElementById('commentForm');
-        const commentsList = document.getElementById('commentsList');
-
-        commentForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            const comment = {
-                name: document.getElementById('commentName').value,
-                email: document.getElementById('commentEmail').value,
-                text: document.getElementById('commentText').value,
-                date: new Date().toLocaleDateString('pt-BR')
-            };
-
-            // Salvar em localStorage
-            let comments = JSON.parse(localStorage.getItem('comments') || '[]');
-            comments.push(comment);
-            localStorage.setItem('comments', JSON.stringify(comments));
-
-            // Limpar formulário
-            commentForm.reset();
-
-            // Recarregar comentários
-            loadComments();
-
-            // Feedback visual
-            alert('Comentário enviado com sucesso! Obrigado por sua mensagem.');
-        });
-
-        function loadComments() {
-            commentsList.innerHTML = '';
-            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
-
-            if (comments.length === 0) {
-                commentsList.innerHTML = '<p style="text-align: center; color: var(--text-light); padding: 2rem;">Nenhum comentário ainda. Seja o primeiro a comentar!</p>';
+        // Renderizar galeria
+        function renderizarGaleria(obras) {
+            const grid = document.getElementById('galleryGrid');
+            
+            if (obras.length === 0) {
+                grid.innerHTML = '<div class="empty-state">Nenhuma obra encontrada nesta categoria.</div>';
                 return;
             }
 
-            comments.reverse().forEach(comment => {
-                const commentDiv = document.createElement('div');
-                commentDiv.className = 'comment';
-                commentDiv.innerHTML = `
-                    <div class="comment-author">${comment.name}</div>
-                    <div class="comment-date">${comment.date}</div>
-                    <div class="comment-text">${comment.text}</div>
-                `;
-                commentsList.appendChild(commentDiv);
+            grid.innerHTML = obras.map(obra => `
+                <div class="gallery-item" onclick="abrirDetalhes(${obra.id})">
+                    <div class="gallery-item-image">
+                        <img src="${obra.imagem}" alt="${obra.titulo}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%232d2d2d%22 width=%22300%22 height=%22300%22/%3E%3C/svg%3E'">
+                    </div>
+                    <div class="gallery-item-content">
+                        <div class="gallery-item-title" title="${obra.titulo}">${obra.titulo}</div>
+                        <div class="gallery-item-meta">${obra.tecnica} • ${obra.ano}</div>
+                        <div class="gallery-item-price">R$ ${obra.preco.toFixed(2).replace('.', ',')}</div>
+                        <span class="gallery-item-status status-${obra.status}">${obra.status === 'vendido' ? 'Vendido' : 'Disponível'}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Filtrar por categoria
+        function filtrarPor(categoria) {
+            filtroAtivo = categoria;
+            
+            // Atualizar botões de filtro
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.filter === categoria) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Filtrar e renderizar
+            const obrasFiltradas = categoria === 'todas' 
+                ? obrasData 
+                : obrasData.filter(obra => obra.categoria === categoria);
+            
+            renderizarGaleria(obrasFiltradas);
+        }
+
+        // Abrir modal de detalhes
+        function abrirDetalhes(obraId) {
+            const obra = obrasData.find(o => o.id === obraId);
+            if (!obra) return;
+
+            document.getElementById('modalTitle').textContent = obra.titulo;
+            document.getElementById('modalImage').querySelector('img').src = obra.imagem;
+            document.getElementById('modalImage').querySelector('img').alt = obra.titulo;
+            document.getElementById('modalTecnica').textContent = obra.tecnica;
+            document.getElementById('modalDimensoes').textContent = obra.dimensoes;
+            document.getElementById('modalAno').textContent = obra.ano;
+            document.getElementById('modalPreco').textContent = `R$ ${obra.preco.toFixed(2).replace('.', ',')}`;
+            document.getElementById('modalStatus').innerHTML = `<span class="gallery-item-status status-${obra.status}">${obra.status === 'vendido' ? 'Vendido' : 'Disponível'}</span>`;
+            
+            const mensagem = encodeURIComponent(`Olá! Tenho interesse na obra: "${obra.titulo}" (Item ${obra.id})`);
+            document.getElementById('modalWhatsapp').href = `https://wa.me/5571999588950?text=${mensagem}`;
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        // Fechar modal
+        function fecharModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        // Configurar eventos
+        function configurarEventos() {
+            // Filtros
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => filtrarPor(e.target.dataset.filter));
+            });
+
+            // Modal
+            document.getElementById('modalClose').addEventListener('click', fecharModal);
+            document.getElementById('modalClose2').addEventListener('click', fecharModal);
+            document.getElementById('detailModal').addEventListener('click', (e) => {
+                if (e.target === document.getElementById('detailModal')) {
+                    fecharModal();
+                }
+            });
+
+            // Menu mobile
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
             });
         }
 
-        // ============================================
-        // SMOOTH SCROLL
-        // ============================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        // Iniciar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', carregarDados);
     </script>
 </body>
 </html>

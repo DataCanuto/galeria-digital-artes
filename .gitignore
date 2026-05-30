@@ -48,6 +48,56 @@ Thumbs.db
 # Logs
 *.log
 
+# 📌 PRODUCTION: Arquivos específicos NÃO permitidos no repositório de produção
+
+# Scripts de desenvolvimento
+sincronizar_dados.py
+validar_json.py
+verificar_precos.py
+atualizar_dados.py
+gerador_etiquetas.py
+extracao_pdf.py
+
+# Arquivos de dados/origem (desnecessários em produção)
+*.csv
+!img_mapping.csv
+dados_obras.csv
+db_camisas.csv
+
+# Imagens antigas (use apenas assets/img_novo/)
+assets/img/
+
+# Diretórios antigos/descontinuados
+links_obras/
+catalog_camisas/
+catalog_mobile/
+qr_code_zap_zap_bank/
+Relatório_vendas/
+relatórios/
+qr_codes_export/
+
+# Arquivos antigos desnecessários
+sw.js
+textos.txt
+setup.py
+requirements.txt
+GUIA_LANDING_PAGE.md
+README_LANDING_PAGE.md
+README_old.md
+
+# Documentação de desenvolvimento (manter localmente, não no repo)
+RECRIACAO_COMPLETA.md
+SUMARIO_FINAL.md
+GUIA_DEPLOY_GITHUB.md
+LEIA-ME-PRIMEIRO.md
+
+# Backups
+*_backup.*
+index_backup.html
+
+# Config antigo
+config.json
+
 # Arquivos de desenvolvimento (não publicar no GitHub Pages)
 *.csv
 *.py
